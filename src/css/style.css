@@ -10,3 +10,157 @@ body {
   font-size: 18px;
   font-style: normal;
 }
+
+
+.container{
+  height: 80vh;
+  min-width: max-content;
+  max-width: 50%;
+  border: 4px solid black;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding-top: 1%;
+  background-color:#F5F5F5;
+}
+
+.trello__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  height: 20%;
+  width: 95%;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 40px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #E1D5E7;
+}
+
+.header__clock{
+  height: 60px;
+  width: 110px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color:#F5F5F5;
+}
+
+.board{
+  height: 80%;
+  display: flex;
+  /* overflow-x: auto; */
+  padding: 1%;
+  justify-content: space-around;
+}
+
+.column{
+  position: relative;
+  display: flex;
+  height: 99%;
+  min-width: 300px;
+  max-width: 33%;
+  border: 1px solid black;
+  border-radius: 15px;
+  column-gap: 10px;
+  background-color: #FFFFFF;
+}
+
+.column__header{
+  position: absolute;
+  content: "";
+  /* display: block; */
+  clear: both;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  border-radius: 15px;
+}
+
+.column__footer{
+  position: absolute;
+  content: "";
+  /* display: block; */
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+  top: 90%;
+  font-weight: bold;
+  font-size: 20px;
+  border-top: 1px solid black;
+  border-radius: 15px;
+}
+
+.todo__header{
+  background-color: #D5E8D4;
+}
+
+.todo__footer{
+  background-color: #D5E8D4;
+}
+
+.in-progress__header{
+  background-color: #F5F5F5;
+}
+
+.done__header{
+  background-color: #DAE8FC;
+}
+
+.done__footer{
+  background-color: #DAE8FC;
+}
+
+.item{
+  font-weight: bold;
+  position: absolute;   /* Это кастыль!!!*/
+  top: 11%;             /* Это кастыль!!!*/
+  left: 1%;             /* Это кастыль!!!*/
+  display: flex;
+  justify-content: space-between;
+  padding: 4%;
+  height: 200px;
+  width: 98%;
+  background-color: #D5E8D4;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 40px;
+}
+
+.item__info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.button__group{
+  display: flex;
+  column-gap: 10px;
+}
+
+.item__control{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.button__all{
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.button__next{
+  height: 35%;
+  width: fit-content;
+  padding: 0 10px;
+  border-radius: 5px;
+}

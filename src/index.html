@@ -16,19 +16,40 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="wrapper">
-      <div class="header__logo"></div>
-      <div class="header__clock"></div>
+  <div class="container">
+    <header class="trello__header">
+        <div class="header__logo">Trello</div>
+        <div class="header__clock"></div>
+    </header>
+    <div class="board">
+        <div class="column board__todo">
+            <div class="column__header todo__header">TODO<span>2</span></div>
+            <div class="item">
+                <div class="item__info">
+                    <div class="item__info_title">Title</div>
+                    <div class="item__info_description">Description</div>
+                    <div class="item__info_user">User</div>
+                </div>
+                <div class="item__control">
+                    <div class="button__group">
+                        <button class="button__all button__edit">EDIT</button>
+                        <button class="button__all button__delete">DELETE</button>
+                    </div>
+                    <button class="button__next">></button>
+                    <div class="item__control_time">Time</div>
+                </div>
+            </div>
+            <div class="column__footer todo__footer">Add todo</div>
+        </div>
+        <div class="column board__in-progress">
+            <div class="column__header in-progress__header">IN PROGRESS<span>3</span></div>
+        </div>
+        <div class="column board__done">
+            <div class="column__header done__header">DONE<span>4</span></div>
+            <div class="column__footer done__footer">Delete all</div>
+        </div>
     </div>
-  </header>
-  <section class="board">
-    <div class="wrapper">
-      <div class="board__column"></div>
-      <div class="board__column"></div>
-      <div class="board__column"></div>
-    </div>
-  </section>
+</div>
 
   <script src="./js/script.js" type="module"></script>
 </body>
