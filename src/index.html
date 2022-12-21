@@ -2,56 +2,58 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trello</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/media.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.css">
 </head>
 
 <body>
-  <div class="container">
-    <header class="trello__header">
-        <div class="header__logo">Trello</div>
-        <div class="header__clock"></div>
-    </header>
-    <div class="board">
-        <div class="column board__todo">
-            <div class="column__header todo__header">TODO<span>2</span></div>
-            <div class="item">
-                <div class="item__info">
-                    <div class="item__info_title">Title</div>
-                    <div class="item__info_description">Description</div>
-                    <div class="item__info_user">User</div>
-                </div>
-                <div class="item__control">
-                    <div class="button__group">
-                        <button class="button__all button__edit">EDIT</button>
-                        <button class="button__all button__delete">DELETE</button>
+    <div class="container">
+        <header class="trello__header">
+            <div class="header__logo">Trello</div>
+            <div class="header__clock"></div>
+        </header>
+        <div class="board">
+            <div class="column board__todo">
+                <div class="column__header todo__header">TODO<span class="counter">2</span></div>
+                <div class="task">
+                    <div class="task__header">
+                        <div class="task__title">Title</div>
+                        <div class="task__header-controls">
+                            <button class="task__button button-edit">EDIT</button>
+                            <button class="task__button button-delete">DELETE</button>
+                        </div>
                     </div>
-                    <button class="button__next">></button>
-                    <div class="item__control_time">Time</div>
+                    <div class="task__content">
+                        <div class="task__description">Description</div>
+                        <button class="task__button button-next"> > </button>
+                    </div>
+                    <div class="task__footer">
+                        <div class="task__user">User</div>
+                        <div class="task__time">Time</div>
+                    </div>
                 </div>
+                <button class="column__footer todo__footer">Add todo</button>
             </div>
-            <div class="column__footer todo__footer">Add todo</div>
-        </div>
-        <div class="column board__in-progress">
-            <div class="column__header in-progress__header">IN PROGRESS<span>3</span></div>
-        </div>
-        <div class="column board__done">
-            <div class="column__header done__header">DONE<span>4</span></div>
-            <div class="column__footer done__footer">Delete all</div>
+            <div class="column board__in-progress">
+                <div class="column__header in-progress__header">IN PROGRESS<span class="counter">3</span></div>
+            </div>
+            <div class="column board__done">
+                <div class="column__header done__header">DONE<span class="counter">4</span></div>
+                <button class="column__footer done__footer">Delete all</button>
+            </div>
         </div>
     </div>
-</div>
 
-  <script src="./js/script.js" type="module"></script>
+    <script src="./js/script.js" type="module"></script>
 </body>
 
 </html>
