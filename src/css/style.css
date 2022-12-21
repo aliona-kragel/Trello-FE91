@@ -10,3 +10,115 @@ body {
   font-size: 18px;
   font-style: normal;
 }
+
+.container{
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 1%;
+}
+
+.trello__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  font-size: 40px;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #E1D5E7;
+}
+
+.header__clock{
+  height: 60px;
+  width: 120px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color:#F5F5F5;
+  text-align: center;
+}
+
+.board{
+  height: 80%; 
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-height: 500px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+}
+
+.column__header{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.column__footer{
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  border-style: none;
+  border-top: 1px solid black;
+  border-radius: 15px;
+  margin-top: auto;
+}
+
+.todo__header, .todo__footer{
+  background-color: #D5E8D4;
+}
+
+.in-progress__header{
+  background-color: #F5F5F5;
+}
+
+.done__header, .done__footer{
+  background-color: #DAE8FC;
+}
+
+.task{
+  display: flex;
+  width: 95%;
+  min-height: 200px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4%;
+  background-color: #D5E8D4;
+  margin: 0 auto 10px;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.task__header, .task__content, .task__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task__button {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10%;
+  background-color: #FFFFFF;
+}
+
+.task__button.button-next {
+  height: 50px;
+}
+
