@@ -16,39 +16,41 @@
 </head>
 
 <body>
-    <div class="container">
-        <header class="trello__header">
-            <div class="header__logo">Trello</div>
-            <div class="header__clock"></div>
+    <div class = "container">
+        <header class = "trello__header">
+            <div class = "header__logo">Trello</div>
+            <div class = "header__clock"></div>
         </header>
-        <div class="board">
-            <div class="column board__todo">
-                <div class="column__header todo__header">TODO<span class="counter">2</span></div>
-                <div class="task">
-                    <div class="task__header">
-                        <div class="task__title">Title</div>
-                        <div class="task__header-controls">
-                            <button class="task__button button-edit">EDIT</button>
-                            <button class="task__button button-delete">DELETE</button>
+        <div class = "board">
+            <div class  = "column board__todo">
+                <div class = "column__header todo__header">TODO<span class = "counter">2</span></div>
+                <div id = "tasks">
+                    <div class = "task">
+                        <div class = "task__header">
+                            <div class = "task__title">Title</div>
+                            <div class = "task__header-controls">
+                                <button class = "task__button button-edit">EDIT</button>
+                                <button class = "task__button button-delete">DELETE</button>
+                            </div>
+                        </div>
+                        <div class = "task__content">
+                            <div class = "task__description">Description</div>
+                            <button class = "task__button button-next"> > </button>
+                        </div>
+                        <div class = "task__footer">
+                            <div class = "task__user">User</div>
+                            <div class = "task__time">Time</div>
                         </div>
                     </div>
-                    <div class="task__content">
-                        <div class="task__description">Description</div>
-                        <button class="task__button button-next"> > </button>
-                    </div>
-                    <div class="task__footer">
-                        <div class="task__user">User</div>
-                        <div class="task__time">Time</div>
-                    </div>
                 </div>
-                <button class="column__footer todo__footer">Add todo</button>
+                <button class = "column__footer todo__footer">Add todo</button>
             </div>
-            <div class="column board__in-progress">
-                <div class="column__header in-progress__header">IN PROGRESS<span class="counter">3</span></div>
+            <div class = "column board__in-progress">
+                <div class = "column__header in-progress__header">IN PROGRESS<span class = "counter">3</span></div>
             </div>
-            <div class="column board__done">
-                <div class="column__header done__header">DONE<span class="counter">4</span></div>
-                <button class="column__footer done__footer">Delete all</button>
+            <div class = "column board__done">
+                <div class = "column__header done__header">DONE<span class = "counter">4</span></div>
+                <button class = "column__footer done__footer">Delete all</button>
             </div>
         </div>
     </div>
