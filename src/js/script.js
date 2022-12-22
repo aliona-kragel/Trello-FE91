@@ -1,6 +1,13 @@
 // data arrays
 
-let taskToDo = [],
+let taskToDo = [{
+    id: 1,
+    status: "todo",
+    title: "Some Title",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis neque ipsum quasi soluta nisi?",
+    user: "Ivan",
+    time: "21:32",
+}],
     taskInProgress = [],
     taskDone = [];
 
@@ -33,13 +40,14 @@ let columnToDo = document.getElementById("tasks");
 
 let task = document.createElement("div");
     task.classList.add("task");
+    task.setAttribute("data-key", taskToDo[0].id);
 
 let taskHeader = document.createElement("div");
     taskHeader.classList.add("task__header");
 
 let taskTitle = document.createElement("div");
     taskTitle.classList.add("task__title");
-    taskTitle.innerHTML = `Title`;
+    taskTitle.innerHTML = taskToDo[0].title;
 
 let taskHeaderControls = document.createElement("div");
     taskHeaderControls.classList.add("task__header-controls");
@@ -56,7 +64,8 @@ let taskContent = document.createElement("div");
     taskContent.classList.add("task__content");
 
 let taskDescription = document.createElement("div");
-    taskDescription.innerHTML = `Description`;
+    taskDescription.classList.add("task__description");
+    taskDescription.innerHTML = taskToDo[0].description;
 
 let taskButtonNext = document.createElement("button");
     taskButtonNext.classList.add("task__button", "button-next");
@@ -67,11 +76,11 @@ let taskFooter = document.createElement("div");
 
 let taskUser = document.createElement("div");
     taskUser.classList.add("task__user");
-    taskUser.innerHTML = `User`; 
+    taskUser.innerHTML = taskToDo[0].user; 
 
 let taskTime = document.createElement("div");
     taskTime.classList.add("task__time");
-    taskTime.innerHTML = `Time`; 
+    taskTime.innerHTML = taskToDo[0].time; 
 // append
 
 columnToDo.append(task);
