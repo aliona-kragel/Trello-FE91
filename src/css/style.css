@@ -98,11 +98,22 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 4%;
-  background-color: #D5E8D4;
   margin: 0 auto 10px;
   border: 1px solid black;
   border-radius: 30px;
   font-weight: bold;
+}
+
+.task.todo {
+  background-color: #D5E8D4;
+}
+
+.task.inprogress {
+background-color: #F5F5F5;
+}
+
+.task.done {
+  background-color: #DAE8FC;
 }
 
 .task__header, .task__content, .task__footer {
@@ -121,3 +132,8 @@ body {
 .task__button.button-next {
   height: 50px;
 } 
+
+.task__button.button-edit,
+.task__button.button-back {
+  margin-right: 5px;
+}
