@@ -79,16 +79,32 @@ body {
   margin-top: auto;
 }
 
-.todo__header, .todo__footer{
+.todo__header, .todo__footer, .task.todo{
   background-color: #D5E8D4;
 }
 
-.in-progress__header{
+.in-progress__header, .task.inprogress{
   background-color: #F5F5F5;
 }
 
-.done__header, .done__footer{
+.done__header, .done__footer, .task.done{
   background-color: #DAE8FC;
+}
+
+.todo__footer:hover{
+  background-color: #c1e7bf;
+}
+
+.todo__footer:active{
+  background-color: #a0ed9d;
+}
+
+.done__footer:hover{
+  background-color: #b3cef1;
+}
+
+.done__footer:active{
+  background-color: #a2c3f0;
 }
 
 .task{
@@ -104,18 +120,6 @@ body {
   font-weight: bold;
 }
 
-.task.todo {
-  background-color: #D5E8D4;
-}
-
-.task.inprogress {
-background-color: #F5F5F5;
-}
-
-.task.done {
-  background-color: #DAE8FC;
-}
-
 .task__header, .task__content, .task__footer {
   display: flex;
   justify-content: space-between;
@@ -127,6 +131,14 @@ background-color: #F5F5F5;
   border: 1px solid black;
   border-radius: 10%;
   background-color: #FFFFFF;
+}
+
+.task__button:hover{
+  background-color: #E1D5E7;
+}
+
+.task__button:active{
+  background-color: #dcc5e7;
 }
 
 .task__button.button-next {
