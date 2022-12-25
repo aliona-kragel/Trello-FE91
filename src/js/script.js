@@ -107,8 +107,7 @@ let createNewTask = function (obj) {
   let taskButtonDelete = document.createElement("button");
   taskButtonDelete.classList.add("task__button", "button-delete");
   taskButtonDelete.innerHTML = `DELETE`;
-
-taskButtonDelete.addEventListener("click", deleteTask);
+  taskButtonDelete.addEventListener("click", deleteTask);
 
 
   let taskButtonBack = document.createElement("button");
