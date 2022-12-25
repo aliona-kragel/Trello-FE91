@@ -73,7 +73,7 @@ showCurrentTime();
 let createNewTask = function (obj) {
 
   let columnToDo = document.getElementById("todo");
-  let columnInProgress = document.getElementById("inProgress");
+  let columnInProgress = document.getElementById("inprogress");
   let columnDone = document.getElementById("done");
 
   let task = document.createElement("div");
