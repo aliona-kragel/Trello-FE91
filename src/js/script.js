@@ -63,7 +63,6 @@ let deleteTask = function () {
   parent.remove();
   tasks = [...taskFilter];
   // updateStorage()
-  console.log(tasks)
 }
 
 // Delete All
@@ -76,7 +75,6 @@ let deleteAllTask = function () {
 
   tasks = [...taskFilter];
   // updateStorage()
-  console.log(tasks);
 }
 
 let buttonDeleteAll = document.querySelector(".done__footer");
