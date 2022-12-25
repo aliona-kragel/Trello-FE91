@@ -1,3 +1,5 @@
+import { showCurrentTime } from "./modules/clock.js";
+
 let tasks = [{
   id: 1,
   status: "todo",
@@ -48,27 +50,35 @@ let tasks = [{
 }
 ];
 
-let showCurrentTime = function () {
-  let date = new Date();
-  let hour = date.getHours();
-  let min = date.getMinutes();
-  hour = updateTime(hour);
-  min = updateTime(min);
-  let time = document.querySelector(".header__clock");
-  time.innerText = `${hour}:${min}`;
-  let timeout = setTimeout(function () { showCurrentTime() }, 1000);
-}
-
-let updateTime = function (t) {
-  if (t < 10) {
-      return "0" + t;
-  }
-  else {
-      return t;
-  }
-}
 
 showCurrentTime();
+
+// Delete Task
+
+let deleteTask = function () {
+  let parent = this.closest(".task");
+  let taskId = +parent.getAttribute("data-key");
+  let taskFilter = tasks.filter((item) => item.id !== taskId);
+
+  parent.remove();
+  tasks = [...taskFilter];
+  // updateStorage()
+}
+
+// Delete All
+
+let deleteAllTask = function () {
+  let donePannel = document.querySelector("#done");
+  donePannel.innerHTML = "";
+  let taskStatus = "done";
+  let taskFilter = tasks.filter((item) => item.status !== taskStatus);
+
+  tasks = [...taskFilter];
+  // updateStorage()
+}
+
+let buttonDeleteAll = document.querySelector(".done__footer");
+buttonDeleteAll.addEventListener("click", deleteAllTask);
 
 let createNewTask = function (obj) {
 
@@ -97,6 +107,8 @@ let createNewTask = function (obj) {
   let taskButtonDelete = document.createElement("button");
   taskButtonDelete.classList.add("task__button", "button-delete");
   taskButtonDelete.innerHTML = `DELETE`;
+  taskButtonDelete.addEventListener("click", deleteTask);
+
 
   let taskButtonBack = document.createElement("button");
   taskButtonBack.classList.add("task__button", "button-back");
