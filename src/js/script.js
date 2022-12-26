@@ -82,6 +82,35 @@ let deleteAllTask = function () {
   // updateStorage()
 }
 
+// buttons Next, Back, Complete
+
+let moveToProgress = function () {
+  let elem = this.closest(".task");
+  let taskId = +elem.getAttribute("data-key");
+  let movedTask = tasks.find(item => item.id == taskId);
+  movedTask.status = "inprogress";
+  elem.remove();
+  createNewTask(movedTask);
+}
+
+let moveToTodo = function(){
+  let elem = this.closest(".task");
+  let taskId = +elem.getAttribute("data-key");
+  let movedTask = tasks.find(item => item.id == taskId);
+  movedTask.status = "todo";
+  elem.remove();
+  createNewTask(movedTask);
+}
+
+let moveToDone = function(){
+  let elem = this.closest(".task");
+  let taskId = +elem.getAttribute("data-key");
+  let movedTask = tasks.find(item => item.id == taskId);
+  movedTask.status = "done";
+  elem.remove();
+  createNewTask(movedTask);
+}
+
 // Counters
 
 let updateCounterToDo = function () {
@@ -141,10 +170,12 @@ let createNewTask = function (obj) {
   let taskButtonBack = document.createElement("button");
   taskButtonBack.classList.add("task__button", "button-back");
   taskButtonBack.innerHTML = `BACK`;
+  taskButtonBack.addEventListener('click', moveToTodo);
 
   let taskButtonComplete = document.createElement("button");
   taskButtonComplete.classList.add("task__button", "button-complete");
   taskButtonComplete.innerHTML = `COMPLETE`;
+  taskButtonComplete.addEventListener('click', moveToDone)
 
   let taskContent = document.createElement("div");
   taskContent.classList.add("task__content");
@@ -156,6 +187,7 @@ let createNewTask = function (obj) {
   let taskButtonNext = document.createElement("button");
   taskButtonNext.classList.add("task__button", "button-next");
   taskButtonNext.innerHTML = `>`;
+  taskButtonNext.addEventListener('click', moveToProgress);
 
   let taskFooter = document.createElement("div");
   taskFooter.classList.add("task__footer");
