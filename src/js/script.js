@@ -50,7 +50,6 @@ let tasks = [{
 }
 ];
 
-
 showCurrentTime();
 
 // Delete Task
@@ -62,6 +61,9 @@ let deleteTask = function () {
 
   parent.remove();
   tasks = [...taskFilter];
+  updateCounterToDo();
+  updateCounterInProgress();
+  updateCounterDone();
   // updateStorage()
 }
 
@@ -74,11 +76,37 @@ let deleteAllTask = function () {
   let taskFilter = tasks.filter((item) => item.status !== taskStatus);
 
   tasks = [...taskFilter];
+  updateCounterToDo();
+  updateCounterInProgress();
+  updateCounterDone();
   // updateStorage()
 }
 
+// Counters
+
+let updateCounterToDo = function () {
+  let doneToDoArr = tasks.filter(item => item.status == "todo");
+  let counter = doneToDoArr.length;
+  let counterValue = document.querySelector(".todo__header .counter");
+  counterValue.innerHTML = counter;
+}
+
+let updateCounterInProgress = function () {
+  let inProgressToDoArr = tasks.filter(item => item.status == "inprogress");
+  let counter = inProgressToDoArr.length;
+  let counterValue = document.querySelector(".in-progress__header .counter");
+  counterValue.innerHTML = counter;
+}
+
+let updateCounterDone = function () {
+  let doneToDoArr = tasks.filter(item => item.status == "done");
+  let counter = doneToDoArr.length;
+  let counterValue = document.querySelector(".done__header .counter");
+  counterValue.innerHTML = counter;
+}
+ 
 let buttonDeleteAll = document.querySelector(".done__footer");
-buttonDeleteAll.addEventListener("click", deleteAllTask);
+    buttonDeleteAll.addEventListener("click", deleteAllTask);
 
 let createNewTask = function (obj) {
 
@@ -162,8 +190,11 @@ let createNewTask = function (obj) {
   task.append(taskHeader, taskContent, taskFooter);
   taskHeader.append(taskTitle, taskHeaderControls);
   taskFooter.append(taskUser, taskTime);
+  updateCounterToDo();
+  updateCounterInProgress();
+  updateCounterDone();
 };
 
 for (let i = 0; i < tasks.length; i++) {
-  createNewTask(tasks[i])
+  createNewTask(tasks[i]);
 };
