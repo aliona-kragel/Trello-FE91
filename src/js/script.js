@@ -61,6 +61,9 @@ let deleteTask = function () {
 
   parent.remove();
   tasks = [...taskFilter];
+  updateCounterToDo();
+  updateCounterInProgress();
+  updateCounterDone();
   // updateStorage()
 }
 
@@ -73,6 +76,9 @@ let deleteAllTask = function () {
   let taskFilter = tasks.filter((item) => item.status !== taskStatus);
 
   tasks = [...taskFilter];
+  updateCounterToDo();
+  updateCounterInProgress();
+  updateCounterDone();
   // updateStorage()
 }
 
@@ -114,8 +120,6 @@ let updateCounterToDo = function () {
   counterValue.innerHTML = counter;
 }
 
-updateCounterToDo();
-
 let updateCounterInProgress = function () {
   let inProgressToDoArr = tasks.filter(item => item.status == "inprogress");
   let counter = inProgressToDoArr.length;
@@ -123,16 +127,12 @@ let updateCounterInProgress = function () {
   counterValue.innerHTML = counter;
 }
 
-updateCounterInProgress();
-
 let updateCounterDone = function () {
   let doneToDoArr = tasks.filter(item => item.status == "done");
   let counter = doneToDoArr.length;
   let counterValue = document.querySelector(".done__header .counter");
   counterValue.innerHTML = counter;
 }
-
-updateCounterDone();
  
 let buttonDeleteAll = document.querySelector(".done__footer");
     buttonDeleteAll.addEventListener("click", deleteAllTask);
