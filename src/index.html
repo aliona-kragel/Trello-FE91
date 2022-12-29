@@ -42,6 +42,60 @@
         </div>
     </div>
 
+    <div class="modal__bg">
+        <div class="modal modal__edit" tabindex="-1" role="dialog">
+        <div class="modal__header">
+            <input class="edit__title" placeholder="title"></input>
+        </div>
+        <div class="modal__body">
+            <input class="edit__description" placeholder="description"></input>
+        </div>
+        <div class="modal__footer">
+            <div class="edit__select">
+                <select class="user__select" name="Select User">
+                    <option value="valuenone" selected disabled>Select User</option>
+                    <option value="value1">Guest</option>
+                    <option value="value2">User 1</option>
+                    <option value="value3">User 2</option>
+                </select>
+            </div>
+            <div class="edit__buttons">
+                <button type="button" class="edit__cancel">Cancel</button>
+                <button type="button" class="edit__confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal__add-todo" tabindex="-1" role="dialog">
+        <div class="modal__header">
+            <input class="add-todo__title" placeholder="title"></input>
+        </div>
+        <div class="modal__body">
+            <input class="add-todo__description" placeholder="description"></input>
+        </div>
+        <div class="modal__footer">
+            <div class="add-todo__select">
+                <select class="user__select" name="Select User">
+                    <option value="valuenone" selected disabled>Select User</option>
+                    <option value="value1">Guest</option>
+                    <option value="value2">User 1</option>
+                    <option value="value3">User 2</option>
+                </select>
+            </div>
+            <div class="add-todo__buttons" tabindex="-1" role="alert">
+                <button type="button" class="add-todo__cancel">Cancel</button>
+                <button type="button" class="add-todo__confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="in-progress__warning warning" tabindex="-1" role="alert">
+        <div class="warning__name">Warning!</div>
+        <div class="warning__buttons">
+            <button type="button" class="warning__accept">Ok</button>
+        </div>
+    </div>
+    </div>
     <script src="./js/script.js" type="module"></script>
 </body>
 
