@@ -82,6 +82,7 @@ let deleteAllTask = function () {
   // updateStorage()
 }
 
+
 // buttons Next, Back, Complete
 
 let moveToProgress = function () {
@@ -230,3 +231,59 @@ let createNewTask = function (obj) {
 for (let i = 0; i < tasks.length; i++) {
   createNewTask(tasks[i]);
 };
+
+// Modals
+
+//All about Add TODO
+
+let showModalAddTodo = function(){
+  modalBg.classList.add("active"); 
+  modalAddTodo.classList.add("active");
+}
+
+let closeModalTodo = function(){
+  modalBg.classList.remove("active"); 
+  modalAddTodo.classList.remove("active");
+}
+
+let addNewTodo = function() {
+
+  let todoTitle = document.querySelector(".add-todo__title");
+  let todoDescription = document.querySelector(".add-todo__description");
+  let userName = document.querySelector(".user__select");
+  let selectedUser = userName.options[userName.selectedIndex].text;
+  let time = document.querySelector(".header__clock");
+  
+  let allId = tasks.map((item) => item.id);
+  allId.sort((a,b) => a - b);
+  let maxId;
+  (tasks.length === 0) ? maxId = 1 : maxId = allId.at(-1) + 1;
+
+  let task = {
+      id: maxId,
+      status: "todo",
+      title: todoTitle.value,
+      description: todoDescription.value,
+      user: selectedUser,
+      time: time.innerText,
+  }
+
+  createNewTask(task);
+  tasks.push(task)
+  todoTitle.value = "";
+  todoDescription.value = "";
+  closeModalTodo()
+};
+
+let modalBg = document.querySelector(".modal__bg");
+
+let modalAddTodo = document.querySelector(".modal.modal__add-todo");
+
+let addTodo = document.querySelector(".todo__footer");
+addTodo.addEventListener("click", showModalAddTodo);
+
+let closeModal = document.querySelector(".add-todo__cancel");
+closeModal.addEventListener("click", closeModalTodo);
+
+let confirmTodo = document.querySelector(".add-todo__confirm");
+confirmTodo.addEventListener("click", addNewTodo)
