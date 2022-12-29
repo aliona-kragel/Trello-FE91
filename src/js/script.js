@@ -241,9 +241,25 @@ let showModalAddTodo = function(){
   modalAddTodo.classList.add("active");
 }
 
+let clearModalState = function () {
+  let todoTitle = document.querySelector(".add-todo__title");
+  let todoDescription = document.querySelector(".add-todo__description");
+  todoTitle.value = "";
+  todoDescription.value = "";
+}
+
 let closeModalTodo = function(){
   modalBg.classList.remove("active"); 
   modalAddTodo.classList.remove("active");
+  clearModalState();
+}
+
+let checkTaskValue = function (value) {
+  if (value === "" || value === " ") {
+    return false
+  } else {
+    return true
+  }
 }
 
 let addNewTodo = function() {
@@ -268,11 +284,23 @@ let addNewTodo = function() {
       time: time.innerText,
   }
 
-  createNewTask(task);
-  tasks.push(task)
-  todoTitle.value = "";
-  todoDescription.value = "";
-  closeModalTodo()
+  if (checkTaskValue(todoTitle.value) &&
+    checkTaskValue(todoDescription.value) &&
+    checkTaskValue(selectedUser)) {
+    createNewTask(task);
+    tasks.push(task);
+    clearModalState();
+    closeModalTodo();
+    // updateStorage();
+  } else {
+    confirm("Заполните все поля");
+  }
+
+  // createNewTask(task);
+  // tasks.push(task)
+  // todoTitle.value = "";
+  // todoDescription.value = "";
+  // closeModalTodo()
 };
 
 let modalBg = document.querySelector(".modal__bg");
