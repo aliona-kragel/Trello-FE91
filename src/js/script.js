@@ -379,42 +379,40 @@ const setUserName = function () {
 }
 setUserName();
 
-let addNewTodo = function() {
 
+let addNewTodo = function () {
   let todoTitle = document.querySelector(".add-todo__title");
   let todoDescription = document.querySelector(".add-todo__description");
-  let select = document.querySelector('.user__select');
   let time = document.querySelector(".header__clock");
-  
-  let selectedUserObj = fetchArr.find(({ name }) => name == select.value);
-  let selectedUser = selectedUserObj.name;
+  let select = document.querySelector('.user__select');
 
-  let allId = tasks.map((item) => item.id);
-  allId.sort((a,b) => a - b);
-  let maxId;
-  (tasks.length === 0) ? maxId = 1 : maxId = allId.at(-1) + 1;
+  // тут мы сначала сделаем проверку на наличие данных и уже потом будем создавать task
 
-  let task = {
+  if (checkTaskValue(todoTitle.value) &&
+    checkTaskValue(todoDescription.value) &&
+    checkSelectValue(select.value)) {
+
+    let selectedUserObj = fetchArr.find(({ name }) => name == select.value);
+    let selectedUser = selectedUserObj.name;
+
+    let allId = tasks.map((item) => item.id);
+    allId.sort((a, b) => a - b);
+    let maxId;
+    (tasks.length === 0) ? maxId = 1 : maxId = allId.at(-1) + 1;
+
+    let task = {
       id: maxId,
       status: "todo",
       title: todoTitle.value,
       description: todoDescription.value,
       user: selectedUser,
       time: time.innerText,
-  }
-
-// тут мы сначала сделаем проверку на наличие данных и 
-  // уже потом будем создавать task
-
-  if (checkTaskValue(todoTitle.value) &&
-    checkTaskValue(todoDescription.value) &&
-    checkSelectValue(select.value)) {
+    }
     createNewTask(task);
     tasks.push(task);
-    updateStorage(tasks);
     updateCounterToDo();
-    clearModalState();
     closeModalTodo();
+    updateStorage();
   } else {
     confirm("Заполните все поля");
   }
