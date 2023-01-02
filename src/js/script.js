@@ -1,80 +1,9 @@
 import { showCurrentTime } from "./modules/clock.js";
 import { updateStorage } from "./modules/local.js";
 window.addEventListener("load", () => {
-  let tasks = [];
-
+  let tasks = [],
+      usersArr = [];
 // Вот в таком виде к нам должны прийти данные из Api:
-
-let fetchArr = [{
-  "id": 1,
-  "name": "Leanne Graham",
-  "username": "Bret",
-  "email": "Sincere@april.biz",
-  "address": {
-    "street": "Kulas Light",
-    "suite": "Apt. 556",
-    "city": "Gwenborough",
-    "zipcode": "92998-3874",
-    "geo": {
-      "lat": "-37.3159",
-      "lng": "81.1496"
-    }
-  },
-  "phone": "1-770-736-8031 x56442",
-  "website": "hildegard.org",
-  "company": {
-    "name": "Romaguera-Crona",
-    "catchPhrase": "Multi-layered client-server neural-net",
-    "bs": "harness real-time e-markets"
-  }
-},
-{
-  "id": 2,
-  "name": "Ervin Howell",
-  "username": "Antonette",
-  "email": "Shanna@melissa.tv",
-  "address": {
-    "street": "Victor Plains",
-    "suite": "Suite 879",
-    "city": "Wisokyburgh",
-    "zipcode": "90566-7771",
-    "geo": {
-      "lat": "-43.9509",
-      "lng": "-34.4618"
-    }
-  },
-  "phone": "010-692-6593 x09125",
-  "website": "anastasia.net",
-  "company": {
-    "name": "Deckow-Crist",
-    "catchPhrase": "Proactive didactic contingency",
-    "bs": "synergize scalable supply-chains"
-  }
-},
-{
-  "id": 3,
-  "name": "Clementine Bauch",
-  "username": "Samantha",
-  "email": "Nathan@yesenia.net",
-  "address": {
-    "street": "Douglas Extension",
-    "suite": "Suite 847",
-    "city": "McKenziehaven",
-    "zipcode": "59590-4157",
-    "geo": {
-      "lat": "-68.6102",
-      "lng": "-47.0653"
-    }
-  },
-  "phone": "1-463-123-4447",
-  "website": "ramiro.info",
-  "company": {
-    "name": "Romaguera-Jacobson",
-    "catchPhrase": "Face to face bifurcated interface",
-    "bs": "e-enable strategic applications"
-  }
-},
-]
 
 showCurrentTime();
 
@@ -99,13 +28,13 @@ const getUSers = function () {
 }
 
 if (localStorage.getItem("UserDataApi")) {
-  tasks = JSON.parse(localStorage.getItem("UserDataApi"));
+  usersArr = JSON.parse(localStorage.getItem("UserDataApi"));
   loadPage();
 } else {
   getUSers()
     .then((data) => {
       localStorage.setItem("UserDataApi", JSON.stringify(data));
-      tasks = [...data];
+      usersArr = [...data];
       loadPage();
     })
 }
@@ -385,7 +314,7 @@ const setUserName = function () {
   optionDefault.innerHTML = "Select user";
   optionDefault.setAttribute("disabled", "disabled");
   optionDefault.setAttribute("selected", "selected");
-  fetchArr.forEach(item => {
+  usersArr.forEach(item => {
     let option = document.createElement("option");
     option.value = item.name;
     option.innerHTML = item.name;
@@ -410,7 +339,7 @@ let addNewTodo = function () {
     checkTaskValue(todoDescription.value) &&
     checkSelectValue(select.value)) {
 
-    let selectedUserObj = fetchArr.find(({ name }) => name == select.value);
+    let selectedUserObj = usersArr.find(({ name }) => name == select.value);
     let selectedUser = selectedUserObj.name;
 
     let allId = tasks.map((item) => item.id);
