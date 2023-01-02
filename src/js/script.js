@@ -1,5 +1,5 @@
 import { showCurrentTime } from "./modules/clock.js";
-
+import { updateStorage } from "./modules/local.js";
 window.addEventListener("load", () => {
   let tasks = [];
 
@@ -86,10 +86,28 @@ let loadPage = function () {
   console.log(tasks);
 }
 
-loadPage();
+const getUSers = function () {
+  return new Promise(function (resolve, reject) {
+    fetch("https://jsonplaceholder.typicode.com/users").then(response => {
+      if (response.status == 200) {
+        resolve(response.json());
+      } else {
+        reject("Server error");
+      }
+    })
+  })
+}
 
-let updateStorage = function () {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+if (localStorage.getItem("UserDataApi")) {
+  tasks = JSON.parse(localStorage.getItem("UserDataApi"));
+  loadPage();
+} else {
+  getUSers()
+    .then((data) => {
+      localStorage.setItem("UserDataApi", JSON.stringify(data));
+      tasks = [...data];
+      loadPage();
+    })
 }
 
 // Delete Task
@@ -412,7 +430,7 @@ let addNewTodo = function () {
     tasks.push(task);
     updateCounterToDo();
     closeModalTodo();
-    updateStorage();
+    updateStorage(tasks);
   } else {
     confirm("Заполните все поля");
   }
