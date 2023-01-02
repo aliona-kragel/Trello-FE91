@@ -1,54 +1,7 @@
 import { showCurrentTime } from "./modules/clock.js";
 
-let tasks = [{
-  id: 1,
-  status: "todo",
-  title: "Some Title",
-  description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis neque ipsum quasi soluta nisi?",
-  user: "Ivan",
-  time: "21:32",
-},
-{
-  id: 2,
-  status: "inprogress",
-  title: "Some Title",
-  description: "Lorem ipsuhghghghghhghghm dolor sit amet consectetur, adipisicing elit. Blanditiis neque ipsum quasi soluta nisi?",
-  user: "John",
-  time: "08:56",
-},
-{
-  id: 3,
-  status: "done",
-  title: "Some Title",
-  description: "Lorem adipisicing elit. Blanditiis neque ipsum quasi soluta nisi?",
-  user: "Liza",
-  time: "10:01",
-},
-{
-  id: 4,
-  status: "done",
-  title: "Some Title",
-  description: "Lorem adipisicing elit. Blanditiis neque ipsum quasi soluta nisi?",
-  user: "Liza",
-  time: "10:01",
-},
-{
-  id: 5,
-  status: "inprogress",
-  title: "Some Title",
-  description: "Blanditiis neque ipsum quasi soluta nisi?",
-  user: "Vladislav",
-  time: "00:00",
-},
-{
-  id: 6,
-  status: "done",
-  title: "Some Title",
-  description: "Blanditiis neque ipsum quasi soluta dfkdlfkdfk dsfldzkn nisi?",
-  user: "Vladislav",
-  time: "00:00",
-}
-];
+window.addEventListener("load", () => {
+  let tasks = [];
 
 // Вот в таком виде к нам должны прийти данные из Api:
 
@@ -123,8 +76,21 @@ let fetchArr = [{
 },
 ]
 
-
 showCurrentTime();
+
+let loadPage = function () {
+  let localTasksData = localStorage.getItem("tasks");
+  if (localTasksData) {
+    tasks = JSON.parse(localTasksData);
+  }
+  console.log(tasks);
+}
+
+loadPage();
+
+let updateStorage = function () {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 // Delete Task
 
@@ -138,7 +104,7 @@ let deleteTask = function () {
   updateCounterToDo();
   updateCounterInProgress();
   updateCounterDone();
-  // updateStorage()
+  updateStorage(tasks);
 }
 
 // Delete All
@@ -153,7 +119,7 @@ let deleteAllTask = function () {
   updateCounterToDo();
   updateCounterInProgress();
   updateCounterDone();
-  // updateStorage()
+  updateStorage(tasks);
 }
 
 let modalInprogress = document.querySelector(".in-progress__warning.warning");
@@ -191,6 +157,7 @@ let moveToProgress = function () {
     if (inprogressFilter.length < 3) {
       elem.remove();
       createNewTask(movedTask);
+      updateStorage(tasks);
     } else {
       showModalInprogress();
     }
@@ -205,6 +172,7 @@ let moveToTodo = function(){
   movedTask.status = "todo";
   elem.remove();
   createNewTask(movedTask);
+  updateStorage(tasks);
 }
 
 let moveToDone = function(){
@@ -214,6 +182,7 @@ let moveToDone = function(){
   movedTask.status = "done";
   elem.remove();
   createNewTask(movedTask);
+  updateStorage(tasks);
 }
 
 // Counters
@@ -339,6 +308,7 @@ let createNewTask = function (obj) {
   updateCounterToDo();
   updateCounterInProgress();
   updateCounterDone();
+  updateStorage(tasks);
 };
 
 for (let i = 0; i < tasks.length; i++) {
@@ -441,9 +411,10 @@ let addNewTodo = function() {
     checkSelectValue(select.value)) {
     createNewTask(task);
     tasks.push(task);
+    updateStorage(tasks);
+    updateCounterToDo();
     clearModalState();
     closeModalTodo();
-    // updateStorage();
   } else {
     confirm("Заполните все поля");
   }
@@ -494,3 +465,4 @@ let modalEditTodo = document.querySelector(".modal.modal__edit");
 
 let closeEditTodo = document.querySelector(".edit__cancel");
 closeEditTodo.addEventListener("click", closeModalEdit);
+});
