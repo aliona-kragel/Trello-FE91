@@ -50,6 +50,80 @@ let tasks = [{
 }
 ];
 
+// Вот в таком виде к нам должны прийти данные из Api:
+
+let fetchArr = [{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "address": {
+    "street": "Kulas Light",
+    "suite": "Apt. 556",
+    "city": "Gwenborough",
+    "zipcode": "92998-3874",
+    "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "hildegard.org",
+  "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+  }
+},
+{
+  "id": 2,
+  "name": "Ervin Howell",
+  "username": "Antonette",
+  "email": "Shanna@melissa.tv",
+  "address": {
+    "street": "Victor Plains",
+    "suite": "Suite 879",
+    "city": "Wisokyburgh",
+    "zipcode": "90566-7771",
+    "geo": {
+      "lat": "-43.9509",
+      "lng": "-34.4618"
+    }
+  },
+  "phone": "010-692-6593 x09125",
+  "website": "anastasia.net",
+  "company": {
+    "name": "Deckow-Crist",
+    "catchPhrase": "Proactive didactic contingency",
+    "bs": "synergize scalable supply-chains"
+  }
+},
+{
+  "id": 3,
+  "name": "Clementine Bauch",
+  "username": "Samantha",
+  "email": "Nathan@yesenia.net",
+  "address": {
+    "street": "Douglas Extension",
+    "suite": "Suite 847",
+    "city": "McKenziehaven",
+    "zipcode": "59590-4157",
+    "geo": {
+      "lat": "-68.6102",
+      "lng": "-47.0653"
+    }
+  },
+  "phone": "1-463-123-4447",
+  "website": "ramiro.info",
+  "company": {
+    "name": "Romaguera-Jacobson",
+    "catchPhrase": "Face to face bifurcated interface",
+    "bs": "e-enable strategic applications"
+  }
+},
+]
+
+
 showCurrentTime();
 
 // Delete Task
@@ -82,6 +156,29 @@ let deleteAllTask = function () {
   // updateStorage()
 }
 
+let modalInprogress = document.querySelector(".in-progress__warning.warning");
+
+let showModalInprogress = function(){
+  modalBg.classList.add("active");
+  modalInprogress.classList.add("active");
+}
+
+let closeModalInprogress = function(){
+  modalBg.classList.remove("active"); 
+  modalInprogress.classList.remove("active");
+}
+
+let modalDone = document.querySelector(".done__warning.warning");
+
+let showModalDone = function(){
+  modalBg.classList.add("active"); 
+  modalDone.classList.add("active");
+}
+
+let closeModalDone = function(){
+  modalBg.classList.remove("active"); 
+  modalDone.classList.remove("active");
+}
 
 // buttons Next, Back, Complete
 
@@ -90,9 +187,16 @@ let moveToProgress = function () {
   let taskId = +elem.getAttribute("data-key");
   let movedTask = tasks.find(item => item.id == taskId);
   movedTask.status = "inprogress";
-  elem.remove();
-  createNewTask(movedTask);
-}
+  let inprogressFilter = tasks.filter((item) => item.status == "inprogress");
+    if (inprogressFilter.length < 3) {
+      elem.remove();
+      createNewTask(movedTask);
+    } else {
+      showModalInprogress();
+    }
+    let inprogressAccept = document.querySelector(".warning__accept");
+    inprogressAccept.addEventListener("click", closeModalInprogress);
+  }
 
 let moveToTodo = function(){
   let elem = this.closest(".task");
@@ -136,7 +240,16 @@ let updateCounterDone = function () {
 }
  
 let buttonDeleteAll = document.querySelector(".done__footer");
-    buttonDeleteAll.addEventListener("click", deleteAllTask);
+    buttonDeleteAll.addEventListener("click", showModalDone);
+    let confirmDeleteAll = document.querySelector(".warning__confirm");
+    confirmDeleteAll.addEventListener("click", () => {
+      deleteAllTask();
+      closeModalDone();
+    });
+    let cancelDeleteAll = document.querySelector(".warning__cancel");
+    cancelDeleteAll.addEventListener("click", closeModalDone);
+    //buttonDeleteAll.addEventListener("click", deleteAllTask);
+
 
 let createNewTask = function (obj) {
 
@@ -203,19 +316,19 @@ let createNewTask = function (obj) {
 
   if (obj.status == "todo") {
       task.classList.add("todo");
-      columnToDo.append(task);
+      columnToDo.prepend(task);
       taskHeaderControls.append(taskButtonEdit, taskButtonDelete);
       taskContent.append(taskDescription, taskButtonNext);
   }
   if (obj.status == "inprogress") {
       task.classList.add("inprogress");
-      columnInProgress.append(task);
+      columnInProgress.prepend(task);
       taskHeaderControls.append(taskButtonBack, taskButtonComplete);
       taskContent.append(taskDescription);
   }
   if (obj.status == "done") {
       task.classList.add("done");
-      columnDone.append(task);
+      columnDone.prepend(task);
       taskHeaderControls.append(taskButtonDelete);
       taskContent.append(taskDescription);
   }
@@ -244,8 +357,10 @@ let showModalAddTodo = function(){
 let clearModalState = function () {
   let todoTitle = document.querySelector(".add-todo__title");
   let todoDescription = document.querySelector(".add-todo__description");
+  let select = document.querySelector('.user__select');
   todoTitle.value = "";
   todoDescription.value = "";
+  select.value = "0";
 }
 
 let closeModalTodo = function(){
@@ -262,14 +377,48 @@ let checkTaskValue = function (value) {
   }
 }
 
+let checkSelectValue = function (value) {
+  if (value === "0") {
+    return false
+  } else {
+    return true
+  }
+}
+
+// select
+
+// отрисовка селекта в зависимости от того, сколько данных к нам прилетело из api
+// но пока он обрабатывает массив fetchArr, дынные которого скопированы из Api:
+
+const setUserName = function () {
+  let userSelect = document.querySelector(".user__select");
+  let optionDefault = document.createElement("option");
+  optionDefault.value = "0";
+  optionDefault.innerHTML = "Select user";
+  optionDefault.setAttribute("disabled", "disabled");
+  optionDefault.setAttribute("selected", "selected");
+  fetchArr.forEach(item => {
+    let option = document.createElement("option");
+    option.value = item.name;
+    option.innerHTML = item.name;
+    userSelect.append(option);
+  })
+  let selectAll = document.querySelector(".add-todo__select");
+  userSelect.append(optionDefault);
+  selectAll.append(userSelect);
+}
+setUserName();
+
 let addNewTodo = function() {
 
   let todoTitle = document.querySelector(".add-todo__title");
   let todoDescription = document.querySelector(".add-todo__description");
-  let userName = document.querySelector(".user__select");
-  let selectedUser = userName.options[userName.selectedIndex].text;
+  let select = document.querySelector('.user__select');
   let time = document.querySelector(".header__clock");
   
+  let selectedUserObj = fetchArr.find(({ name }) => name == select.value);
+  let selectedUser = selectedUserObj.name;
+
   let allId = tasks.map((item) => item.id);
   allId.sort((a,b) => a - b);
   let maxId;
@@ -284,9 +433,12 @@ let addNewTodo = function() {
       time: time.innerText,
   }
 
+// тут мы сначала сделаем проверку на наличие данных и 
+  // уже потом будем создавать task
+
   if (checkTaskValue(todoTitle.value) &&
     checkTaskValue(todoDescription.value) &&
-    checkTaskValue(selectedUser)) {
+    checkSelectValue(select.value)) {
     createNewTask(task);
     tasks.push(task);
     clearModalState();
@@ -295,12 +447,6 @@ let addNewTodo = function() {
   } else {
     confirm("Заполните все поля");
   }
-
-  // createNewTask(task);
-  // tasks.push(task)
-  // todoTitle.value = "";
-  // todoDescription.value = "";
-  // closeModalTodo()
 };
 
 let modalBg = document.querySelector(".modal__bg");
@@ -314,4 +460,37 @@ let closeModal = document.querySelector(".add-todo__cancel");
 closeModal.addEventListener("click", closeModalTodo);
 
 let confirmTodo = document.querySelector(".add-todo__confirm");
-confirmTodo.addEventListener("click", addNewTodo)
+confirmTodo.addEventListener("click", addNewTodo);
+
+//All about Edit modal
+
+let showModalEdit = function(){
+  modalBg.classList.add("active"); 
+  modalEditTodo.classList.add("active");
+
+  let editTitle = document.querySelector(".edit__title");
+  let editDescription = document.querySelector(".edit__description");
+
+  let elem = this.closest(".task");
+  let taskId = +elem.getAttribute("data-key");
+  let editedTask = tasks.find(item => item.id == taskId);
+
+  editTitle.value = editedTask.title;
+  editDescription.value = editedTask.description;
+  let confirmEditTodo = function(){
+
+  }
+}
+
+let closeModalEdit = function(){
+  modalBg.classList.remove("active"); 
+  modalEditTodo.classList.remove("active");
+}
+
+let editTodo = document.querySelector(".button-edit");
+editTodo.addEventListener("click", showModalEdit);
+
+let modalEditTodo = document.querySelector(".modal.modal__edit");
+
+let closeEditTodo = document.querySelector(".edit__cancel");
+closeEditTodo.addEventListener("click", closeModalEdit);
