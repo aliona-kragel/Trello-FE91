@@ -2,7 +2,7 @@ import { showCurrentTime } from "./modules/clock.js";
 import { updateStorage } from "./modules/local.js";
 window.addEventListener("load", () => {
   let tasks = [],
-      usersArr = [];
+      usersData = [];
 // Вот в таком виде к нам должны прийти данные из Api:
 
 showCurrentTime();
@@ -28,13 +28,13 @@ const getUSers = function () {
 }
 
 if (localStorage.getItem("UserDataApi")) {
-  usersArr = JSON.parse(localStorage.getItem("UserDataApi"));
+  usersData = JSON.parse(localStorage.getItem("UserDataApi"));
   loadPage();
 } else {
   getUSers()
     .then((data) => {
       localStorage.setItem("UserDataApi", JSON.stringify(data));
-      usersArr = [...data];
+      usersData = [...data];
       loadPage();
     })
 }
@@ -314,7 +314,7 @@ const setUserName = function () {
   optionDefault.innerHTML = "Select user";
   optionDefault.setAttribute("disabled", "disabled");
   optionDefault.setAttribute("selected", "selected");
-  usersArr.forEach(item => {
+  usersData.forEach(item => {
     let option = document.createElement("option");
     option.value = item.name;
     option.innerHTML = item.name;
@@ -339,7 +339,7 @@ let addNewTodo = function () {
     checkTaskValue(todoDescription.value) &&
     checkSelectValue(select.value)) {
 
-    let selectedUserObj = usersArr.find(({ name }) => name == select.value);
+    let selectedUserObj = usersData.find(({ name }) => name == select.value);
     let selectedUser = selectedUserObj.name;
 
     let allId = tasks.map((item) => item.id);
