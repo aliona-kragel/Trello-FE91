@@ -53,10 +53,10 @@
         <div class="modal__footer">
             <div class="edit__select">
                 <select class="user__select" name="Select User">
-                    <option value="valuenone" selected disabled>Select User</option>
+                    <!-- <option value="valuenone" selected disabled>Select User</option>
                     <option value="value1">Guest</option>
                     <option value="value2">User 1</option>
-                    <option value="value3">User 2</option>
+                    <option value="value3">User 2</option> -->
                 </select>
             </div>
             <div class="edit__buttons">
@@ -75,12 +75,6 @@
         </div>
         <div class="modal__footer">
             <div class="add-todo__select">
-                <!-- <select class="user__select" name="Select User">
-                    <option value="valuenone" selected disabled>Select User</option>
-                    <option value="value1">Guest</option>
-                    <option value="value2">User 1</option>
-                    <option value="value3">User 2</option>
-                </select> -->
             </div>
             <div class="add-todo__buttons" tabindex="-1" role="alert">
                 <button type="button" class="add-todo__cancel">Cancel</button>
@@ -90,14 +84,14 @@
     </div>
 
     <div class="in-progress__warning warning" tabindex="-1" role="alert">
-        <div class="warning__name">Warning!<br>Больше 6 нельзя!</div>
+        <div class="warning__name"><b>Warning!</b><br>Больше 6 нельзя!</div>
         <div class="warning__buttons">
             <button type="button" class="warning__accept">Ok</button>
         </div>
     </div>
 
     <div class="done__warning warning">
-        <div class="warning__name">Warning!<br>Вы точно уверены удалить всё?</div>
+        <div class="warning__name"><b>Warning!</b><br>Вы точно хотите удалить всё?</div>
         <div class="warning__buttons">
             <button type="button" class="warning__cancel">Cancel</button>
             <button type="button" class="warning__confirm">Confirm</button>

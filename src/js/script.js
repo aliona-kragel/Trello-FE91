@@ -152,14 +152,14 @@ let moveToProgress = function () {
   let elem = this.closest(".task");
   let taskId = +elem.getAttribute("data-key");
   let movedTask = tasks.find(item => item.id == taskId);
-  movedTask.status = "inprogress";
   let inprogressFilter = tasks.filter((item) => item.status == "inprogress");
-    if (inprogressFilter.length < 3) {
+    if (inprogressFilter.length >= 6) {
+      showModalInprogress();
+    } else {
       elem.remove();
+      movedTask.status = "inprogress";
       createNewTask(movedTask);
       updateStorage(tasks);
-    } else {
-      showModalInprogress();
     }
     let inprogressAccept = document.querySelector(".warning__accept");
     inprogressAccept.addEventListener("click", closeModalInprogress);
@@ -439,7 +439,7 @@ let showModalEdit = function(){
 
   let editTitle = document.querySelector(".edit__title");
   let editDescription = document.querySelector(".edit__description");
-
+  
   let elem = this.closest(".task");
   let taskId = +elem.getAttribute("data-key");
   let editedTask = tasks.find(item => item.id == taskId);
@@ -447,9 +447,15 @@ let showModalEdit = function(){
   editTitle.value = editedTask.title;
   editDescription.value = editedTask.description;
   let confirmEditTodo = function(){
-
+    editedTask.title = editTitle.value;
+    editedTask.description = editedTask.description;
+    closeModalEdit();
+    let editConfirm = document.querySelector(".edit__confirm");
+editConfirm.addEventListener("click", confirmEditTodo);
   }
 }
+
+
 
 let closeModalEdit = function(){
   modalBg.classList.remove("active"); 
@@ -463,4 +469,8 @@ let modalEditTodo = document.querySelector(".modal.modal__edit");
 
 let closeEditTodo = document.querySelector(".edit__cancel");
 closeEditTodo.addEventListener("click", closeModalEdit);
+
+let editConfirm = document.querySelector(".edit__confirm");
+editConfirm.addEventListener("click", confirmEditTodo);
+
 });
