@@ -265,6 +265,10 @@ for (let i = 0; i < tasks.length; i++) {
 // Modals
 
 //All about Add TODO
+let antiScrollModal = function(){
+
+}
+
 
 let showModalAddTodo = function(){
   modalBg.classList.add("active"); 
@@ -379,40 +383,67 @@ let confirmTodo = document.querySelector(".add-todo__confirm");
 confirmTodo.addEventListener("click", addNewTodo);
 
 //All about Edit modal
+// отрисовка селекта
 
-let showModalEdit = function(){
-  modalBg.classList.add("active"); 
+const setUserNameEdit = function () {
+  let userSelect = document.querySelector(".user__select-edit");
+  let optionDefault = document.createElement("option");
+  optionDefault.value = "0";
+  optionDefault.innerHTML = "Select user";
+  optionDefault.setAttribute("disabled", "disabled");
+  optionDefault.setAttribute("selected", "selected");
+  usersData.forEach(item => {
+    let option = document.createElement("option");
+    option.value = item.name;
+    option.innerHTML = item.name;
+    userSelect.append(option);
+  })
+  let selectAll = document.querySelector(".edit__select");
+  userSelect.append(optionDefault);
+  selectAll.append(userSelect);
+}
+setUserNameEdit()
+
+let modalEditTodo = document.querySelector(".modal.modal__edit");
+
+let setSelectedAttribute = function (userName) {
+  let userSelect = document.querySelector(".user__select-edit");
+  let allOptions = userSelect.querySelectorAll("option");
+  allOptions.forEach((item) => {
+    if (item.getAttribute("selected")) {
+      item.removeAttribute("selected", "selected");
+    };
+    if (item.value == userName) {
+      item.setAttribute("selected", "selected");
+    }
+  })
+}
+
+let showModalEdit = function () {
+  modalBg.classList.add("active");
   modalEditTodo.classList.add("active");
 
-  let editTitle = document.querySelector(".edit__title");
-  let editDescription = document.querySelector(".edit__description");
-  
   let elem = this.closest(".task");
   let taskId = +elem.getAttribute("data-key");
   let editedTask = tasks.find(item => item.id == taskId);
+  let editedUser = editedTask.user;
+  setSelectedAttribute(editedUser);
+
+  let editTitle = document.querySelector(".edit__title");
+  let editDescription = document.querySelector(".edit__description");
 
   editTitle.value = editedTask.title;
   editDescription.value = editedTask.description;
-  let confirmEditTodo = function(){
-    editedTask.title = editTitle.value;
-    editedTask.description = editedTask.description;
-    closeModalEdit();
-    let editConfirm = document.querySelector(".edit__confirm");
-editConfirm.addEventListener("click", confirmEditTodo);
-  }
 }
 
-
-
-let closeModalEdit = function(){
-  modalBg.classList.remove("active"); 
+let closeModalEdit = function () {
+  modalBg.classList.remove("active");
   modalEditTodo.classList.remove("active");
 }
 
-let editTodo = document.querySelector(".button-edit");
-editTodo.addEventListener("click", showModalEdit);
-
-let modalEditTodo = document.querySelector(".modal.modal__edit");
+let editTodosArr = document.querySelectorAll(".button-edit");
+// foreach повесит события на все кнопки, а не на одну
+editTodosArr.forEach((btn) => btn.addEventListener("click", showModalEdit));
 
 let closeEditTodo = document.querySelector(".edit__cancel");
 closeEditTodo.addEventListener("click", closeModalEdit);
