@@ -45,10 +45,10 @@
     <div class="modal__bg">
         <div class="modal modal__edit" tabindex="-1" role="dialog">
         <div class="modal__header">
-            <input class="edit__title" placeholder="title"></input>
+            <input class="edit__title" placeholder="Title"></input>
         </div>
         <div class="modal__body">
-            <input class="edit__description" placeholder="description"></input>
+            <input class="edit__description" placeholder="Description"></input>
         </div>
         <div class="modal__footer">
             <div class="edit__select">
@@ -56,18 +56,18 @@
                 </select> -->
             </div>
             <div class="edit__buttons">
-                <button type="button" class="edit__cancel">Cancel</button>
-                <button type="button" class="edit__confirm">Confirm</button>
+                <button type="button" class="task__button edit__cancel">Cancel</button>
+                <button type="button" class="task__button edit__confirm">Confirm</button>
             </div>
         </div>
     </div>
 
     <div class="modal modal__add-todo" tabindex="-1" role="dialog">
         <div class="modal__header">
-            <input class="add-todo__title" placeholder="title"></input>
+            <input class="add-todo__title" placeholder="Title"></input>
         </div>
         <div class="modal__body">
-            <input class="add-todo__description" placeholder="description"></input>
+            <input class="add-todo__description" placeholder="Description"></input>
         </div>
         <div class="modal__footer">
             <div class="add-todo__select">
@@ -75,8 +75,8 @@
                 </select>
             </div>
             <div class="add-todo__buttons" tabindex="-1" role="alert">
-                <button type="button" class="add-todo__cancel">Cancel</button>
-                <button type="button" class="add-todo__confirm">Confirm</button>
+                <button type="button" class="task__button add-todo__cancel">Cancel</button>
+                <button type="button" class="task__button add-todo__confirm">Confirm</button>
             </div>
         </div>
     </div>
@@ -84,15 +84,15 @@
     <div class="in-progress__warning warning" tabindex="-1" role="alert">
         <div class="warning__name">Warning!<br>Больше 6 нельзя!</div>
         <div class="warning__buttons">
-            <button type="button" class="warning__accept">Ok</button>
+            <button type="button" class="task__button warning__accept">Ok</button>
         </div>
     </div>
 
     <div class="done__warning warning">
-        <div class="warning__name">Warning!<br>Вы точно уверены удалить всё?</div>
+        <div class="warning__name">Warning!<br>Do you really want to delete all?</div>
         <div class="warning__buttons">
-            <button type="button" class="warning__cancel">Cancel</button>
-            <button type="button" class="warning__confirm">Confirm</button>
+            <button type="button" class="task__button warning__cancel">Cancel</button>
+            <button type="button" class="task__button warning__confirm">Confirm</button>
         </div>
     </div>
 

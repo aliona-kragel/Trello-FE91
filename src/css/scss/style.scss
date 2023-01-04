@@ -1,0 +1,393 @@
+$var1: #181a2e;
+$var2: #FB37FF;
+$var3: #FF26C2;
+$var4: #f0f8ff;
+$var5: #13132e;
+$var6: #33e9e9;
+$var7: #00b1ff;
+$var8: #c882ff;
+$var9: #13dbed;
+$var10: #1cc5ce;
+$var11: #d36def;
+$var12: #d946ec;
+$var13: #000000;
+$var14: #101120;
+$var15: #efff00;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	font-style: normal;
+	background-size: 100%;
+	background-color: $var1;
+}
+.container {
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 1%;
+}
+.trello__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 35px;
+	font-size: 40px;
+	font-weight: 500;
+	border-radius: 15px;
+	border: 1px solid $var2;
+	box-shadow: 3px 5px 10px $var3;
+	margin-bottom: 20px;
+}
+.header__logo {
+	color: $var4;
+}
+.header__clock {
+	height: 60px;
+	width: 120px;
+	border-radius: 10px;
+	background-color: $var5;
+	text-align: center;
+	box-shadow: 2px 1px 20px $var4;
+	color: $var4;
+}
+.board {
+	height: 80%;
+	display: flex;
+	justify-content: space-around;
+	padding: 1%;
+	color: $var4;
+	&__todo {
+		border: 1px solid $var6;
+	}
+	&__in-progress {
+		border: 1px solid $var7;
+	}
+	&__done {
+		border: 1px solid $var8;
+	}
+}
+.column {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	min-height: 500px;
+	border-radius: 15px;
+	background-color: $var1;
+	&__header {
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		font-weight: bold;
+		font-size: 20px;
+		border-radius: 15px;
+		margin-bottom: 20px;
+	}
+	&__footer {
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		font-weight: bold;
+		font-size: 20px;
+		border-radius: 15px;
+		margin-top: auto;
+		color: $var4;
+		background-color: inherit;
+	}
+}
+#todo {
+	margin-bottom: 20px;
+}
+.todo__header, .todo__footer, .task.todo {
+	border: 3px solid $var6;
+	box-shadow: 2px 2px 7px $var6;
+}
+.in-progress__header, .task.inprogress {
+	border: 3px solid $var7;
+	box-shadow: 2px 2px 7px $var7;
+}
+.done__header, .done__footer, .task.done {
+	border: 3px solid $var8;
+	box-shadow: 2px 2px 7px $var8;
+}
+.todo__footer:hover {
+	background-color: $var9;
+}
+.todo__footer:active {
+	background-color: $var10;
+}
+.done__footer:hover {
+	background-color: $var11;
+}
+.done__footer:active {
+	background-color: $var12;
+}
+.task {
+	display: flex;
+	width: 95%;
+	min-height: 200px;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 4%;
+	margin: 0 auto 15px;
+	border-radius: 30px;
+	font-weight: bold;
+	background-color: #1e213ec7;
+	&__header, &__content, &__footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__button {
+		padding: 7px;
+		border: 2px solid $var4;
+		border-radius: 5%;
+		color: $var4;
+		background-color: #1e213ec7;
+		box-shadow: 2px 1px 5px $var4;
+		&:hover {
+			border-radius: 10px;
+		}
+		&:active {
+			background-color: $var4;
+			color: $var13;
+			border: 1px solid $var13;
+			border-radius: 10px;
+			box-shadow: 1px 1px 1px $var13;
+		}
+		&.button-next {
+			height: 50px;
+		}
+		&.button-edit, &.button-back {
+			margin-right: 5px;
+		}
+	}
+}
+.modal__bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.5s all;
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+		transition: 0.5s all;
+	}
+}
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	background-color: $var14;
+	width: 40%;
+	height: 50%;
+	padding: 10px 30px;
+	border-radius: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 1px solid $var15;
+	transition: 0.5s all;
+	box-shadow: 1px 1px 20px $var15;
+	&.active {
+		transform: translate(-50%, -50%) scale(1);
+		transition: 0.5s all;
+	}
+	&__header {
+		width: 50%;
+		height: 15%;
+	}
+	&__body {
+		height: 50%;
+		width: 100%;
+	}
+	&__footer {
+		width: 100%;
+		height: 15%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+}
+.edit__title {
+	padding: 5px;
+	width: 100%;
+	text-align: center;
+	text-transform: initial;
+	border: 1px solid $var15;
+	border-radius: 5px;
+	background-color: $var14;
+	height: 100%;
+	font-size: 24px;
+	color: $var4;
+	&::-webkit-input-placeholder {
+		color: $var4;
+	}
+	&:-moz-placeholder {
+		color: $var4;
+	}
+	&::-moz-placeholder {
+		color: $var4;
+	}
+	&:-ms-input-placeholder {
+		color: $var4;
+	}
+}
+.edit__description {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	text-transform: initial;
+	border-radius: 15px;
+	border: 1px solid $var15;
+	font-size: 24px;
+	background-color: $var14;
+	color: $var4;
+	&::-webkit-input-placeholder {
+		color: $var4;
+	}
+	&:-moz-placeholder {
+		color: $var4;
+	}
+	&::-moz-placeholder {
+		color: $var4;
+	}
+	&:-ms-input-placeholder {
+		color: $var4;
+	}
+}
+.edit__select {
+	width: 50%;
+	height: 80%;
+	display: flex;
+}
+.edit__buttons {
+	display: flex;
+	width: 50%;
+	height: 80%;
+	justify-content: space-around;
+	button {
+		width: 45%;
+		font-size: 16px;
+		padding: 5px;
+	}
+}
+.add-todo__title {
+	padding: 5px;
+	width: 100%;
+	text-align: center;
+	text-transform: initial;
+	border: 1px solid $var15;
+	border-radius: 5px;
+	background-color: $var14;
+	height: 100%;
+	font-size: 24px;
+	color: $var4;
+	&::-webkit-input-placeholder {
+		color: $var4;
+	}
+	&:-moz-placeholder {
+		color: $var4;
+	}
+	&::-moz-placeholder {
+		color: $var4;
+	}
+	&:-ms-input-placeholder {
+		color: $var4;
+	}
+}
+.add-todo__description {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	text-transform: initial;
+	border-radius: 15px;
+	border: 1px solid $var15;
+	font-size: 24px;
+	background-color: $var14;
+	color: $var4;
+	&::-webkit-input-placeholder {
+		color: $var4;
+	}
+	&:-moz-placeholder {
+		color: $var4;
+	}
+	&::-moz-placeholder {
+		color: $var4;
+	}
+	&:-ms-input-placeholder {
+		color: $var4;
+	}
+}
+.add-todo__select {
+	width: 50%;
+	height: 80%;
+	display: flex;
+}
+.add-todo__buttons {
+	display: flex;
+	width: 50%;
+	height: 80%;
+	justify-content: space-around;
+	button {
+		width: 45%;
+		font-size: 16px;
+		padding: 5px;
+	}
+}
+.user__select {
+	width: 80%;
+	padding: 1px 20px;
+	font-size: 14px;
+	border-radius: 3px;
+	border: 1px solid $var15;
+	background-color: $var14;
+	color: $var4;
+}
+.warning {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	background-color: $var14;
+	width: 30%;
+	height: 30%;
+	padding: 0px 20px;
+	border-radius: 15px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+	border: 1px solid $var15;
+	color: $var4;
+	box-shadow: 1px 1px 15px $var15;
+	transition: 0.5s all;
+	&.active {
+		transform: translate(-50%, -50%) scale(1);
+		transition: 0.5s all;
+	}
+	&__name {
+		text-align: center;
+		font-size: 14px;
+		line-height: 1.5;
+	}
+	&__buttons {
+		display: flex;
+		column-gap: 30px;
+	}
+}
+.done__warning {
+	justify-content: space-around;
+}
