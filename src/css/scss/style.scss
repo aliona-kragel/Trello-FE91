@@ -13,6 +13,7 @@ $var12: #d946ec;
 $var13: #000000;
 $var14: #101120;
 $var15: #efff00;
+$var16: #808080;
 
 * {
 	margin: 0;
@@ -82,7 +83,7 @@ body {
 	border-radius: 15px;
 	background-color: $var1;
 	&__header {
-		height: 50px;
+        padding: 10px;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -103,7 +104,7 @@ body {
 		background-color: inherit;
 	}
 }
-#todo, #in-progress, #done{
+#todo, #inprogress, #done{
 	margin-bottom: 10px;
     overflow: auto;
     &::-webkit-scrollbar {
@@ -131,18 +132,22 @@ body {
 }
 .todo__footer:hover {
 	background-color: $var9;
+    border-color: $var9;
     cursor: pointer;
 }
 .todo__footer:active {
 	background-color: $var10;
+    border-color: $var10;
     cursor: pointer;
 }
 .done__footer:hover {
 	background-color: $var11;
+    border-color: $var11;
     cursor: pointer;
 }
 .done__footer:active {
 	background-color: $var12;
+    border-color: $var12;
     cursor: pointer;
 }
 .task {
@@ -248,16 +253,16 @@ body {
 	font-size: 24px;
 	color: $var4;
 	&::-webkit-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&::-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-ms-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 }
 .edit__description {
@@ -271,16 +276,16 @@ body {
 	background-color: $var14;
 	color: $var4;
 	&::-webkit-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&::-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-ms-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 }
 .edit__select {
@@ -311,16 +316,16 @@ body {
 	font-size: 24px;
 	color: $var4;
 	&::-webkit-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&::-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-ms-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 }
 .add-todo__description {
@@ -334,16 +339,16 @@ body {
 	background-color: $var14;
 	color: $var4;
 	&::-webkit-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&::-moz-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 	&:-ms-input-placeholder {
-		color: $var4;
+		color: $var16;
 	}
 }
 .add-todo__select {
@@ -377,8 +382,8 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
 	background-color: $var14;
-	width: 30%;
-	height: 30%;
+	width: 25%;
+	height: 25%;
 	padding: 0px 20px;
 	border-radius: 15px;
 	display: flex;
