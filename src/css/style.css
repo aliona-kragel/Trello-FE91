@@ -100,7 +100,7 @@ body {
   overflow: auto;
 }
 #todo::-webkit-scrollbar, #in-progress::-webkit-scrollbar, #done::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 #todo::-webkit-scrollbar-track, #in-progress::-webkit-scrollbar-track, #done::-webkit-scrollbar-track {
   background: #181a2e;
