@@ -27,6 +27,29 @@ const getUSers = function () {
   })
 }
 
+// Counters
+
+let updateCounterToDo = function () {
+  let doneToDoArr = tasks.filter(item => item.status == "todo");
+  let counter = doneToDoArr.length;
+  let counterValue = document.querySelector(".todo__header .counter");
+  counterValue.innerHTML = counter;
+}
+
+let updateCounterInProgress = function () {
+  let inProgressToDoArr = tasks.filter(item => item.status == "inprogress");
+  let counter = inProgressToDoArr.length;
+  let counterValue = document.querySelector(".in-progress__header .counter");
+  counterValue.innerHTML = counter;
+}
+
+let updateCounterDone = function () {
+  let doneToDoArr = tasks.filter(item => item.status == "done");
+  let counter = doneToDoArr.length;
+  let counterValue = document.querySelector(".done__header .counter");
+  counterValue.innerHTML = counter;
+}
+
 if (localStorage.getItem("UserDataApi")) {
   usersData = JSON.parse(localStorage.getItem("UserDataApi"));
   loadPage();
@@ -131,29 +154,6 @@ let moveToDone = function(){
   createNewTask(movedTask);
   updateStorage(tasks);
 }
-
-// Counters
-
-let updateCounterToDo = function () {
-  let doneToDoArr = tasks.filter(item => item.status == "todo");
-  let counter = doneToDoArr.length;
-  let counterValue = document.querySelector(".todo__header .counter");
-  counterValue.innerHTML = counter;
-}
-
-let updateCounterInProgress = function () {
-  let inProgressToDoArr = tasks.filter(item => item.status == "inprogress");
-  let counter = inProgressToDoArr.length;
-  let counterValue = document.querySelector(".in-progress__header .counter");
-  counterValue.innerHTML = counter;
-}
-
-let updateCounterDone = function () {
-  let doneToDoArr = tasks.filter(item => item.status == "done");
-  let counter = doneToDoArr.length;
-  let counterValue = document.querySelector(".done__header .counter");
-  counterValue.innerHTML = counter;
-}
  
 let buttonDeleteAll = document.querySelector(".done__footer");
     buttonDeleteAll.addEventListener("click", showModalDone);
@@ -166,6 +166,33 @@ let buttonDeleteAll = document.querySelector(".done__footer");
     cancelDeleteAll.addEventListener("click", closeModalDone);
     //buttonDeleteAll.addEventListener("click", deleteAllTask);
 
+
+    let showModalEdit = function () {
+      modalBg.classList.add("active");
+      modalEditTodo.classList.add("active");
+    
+      let elem = this.closest(".task");
+      let taskId = +elem.getAttribute("data-key");
+      let editedTask = tasks.find(item => item.id == taskId);
+      let editedUser = editedTask.user;
+      setSelectedAttribute(editedUser);
+    
+      let editTitle = document.querySelector(".edit__title");
+      let editDescription = document.querySelector(".edit__description");
+    
+      editTitle.value = editedTask.title;
+      editDescription.value = editedTask.description;
+    
+      let editConfirm = document.querySelector(".edit__confirm");
+      
+      let confirmEditTodo = function(){
+        editedTask.title = editTitle.innerHTML;
+        updateStorage(tasks);
+        console.log(editedTask.title);
+        closeModalEdit();
+      }
+      editConfirm.addEventListener("click", confirmEditTodo);
+    }
 
 let createNewTask = function (obj) {
 
@@ -190,6 +217,7 @@ let createNewTask = function (obj) {
   let taskButtonEdit = document.createElement("button");
   taskButtonEdit.classList.add("task__button", "button-edit");
   taskButtonEdit.innerHTML = `EDIT`;
+  taskButtonEdit.addEventListener("click", showModalEdit);
 
   let taskButtonDelete = document.createElement("button");
   taskButtonDelete.classList.add("task__button", "button-delete");
@@ -265,10 +293,6 @@ for (let i = 0; i < tasks.length; i++) {
 // Modals
 
 //All about Add TODO
-let antiScrollModal = function(){
-
-}
-
 
 let showModalAddTodo = function(){
   modalBg.classList.add("active"); 
@@ -419,36 +443,11 @@ let setSelectedAttribute = function (userName) {
   })
 }
 
-let showModalEdit = function () {
-  modalBg.classList.add("active");
-  modalEditTodo.classList.add("active");
-
-  let elem = this.closest(".task");
-  let taskId = +elem.getAttribute("data-key");
-  let editedTask = tasks.find(item => item.id == taskId);
-  let editedUser = editedTask.user;
-  setSelectedAttribute(editedUser);
-
-  let editTitle = document.querySelector(".edit__title");
-  let editDescription = document.querySelector(".edit__description");
-
-  editTitle.value = editedTask.title;
-  editDescription.value = editedTask.description;
-}
-
 let closeModalEdit = function () {
   modalBg.classList.remove("active");
   modalEditTodo.classList.remove("active");
 }
 
-let editTodosArr = document.querySelectorAll(".button-edit");
-// foreach повесит события на все кнопки, а не на одну
-editTodosArr.forEach((btn) => btn.addEventListener("click", showModalEdit));
-
 let closeEditTodo = document.querySelector(".edit__cancel");
 closeEditTodo.addEventListener("click", closeModalEdit);
-
-let editConfirm = document.querySelector(".edit__confirm");
-editConfirm.addEventListener("click", confirmEditTodo);
-
 });
