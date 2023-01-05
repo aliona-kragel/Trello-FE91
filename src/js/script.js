@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
       usersData = [];
 // Вот в таком виде к нам должны прийти данные из Api:
 
-showCurrentTime();
+// showCurrentTime();
 
 let loadPage = function () {
   let localTasksData = localStorage.getItem("tasks");
@@ -166,6 +166,16 @@ let buttonDeleteAll = document.querySelector(".done__footer");
     cancelDeleteAll.addEventListener("click", closeModalDone);
     //buttonDeleteAll.addEventListener("click", deleteAllTask);
 
+    let updateTask = function (obj) {
+      let taskTitle = document.querySelector(".task__title");
+      taskTitle.innerHTML = obj.title;
+
+      let taskDescription = document.querySelector(".task__description");
+      taskDescription.innerHTML = obj.description;
+
+      let taskUser = document.querySelector(".task__user");
+      taskUser.innerHTML = obj.user;
+    }
 
     let showModalEdit = function () {
       modalBg.classList.add("active");
@@ -179,16 +189,27 @@ let buttonDeleteAll = document.querySelector(".done__footer");
     
       let editTitle = document.querySelector(".edit__title");
       let editDescription = document.querySelector(".edit__description");
-    
+      let userEdit = document.querySelector(".user__select-edit");
+
       editTitle.value = editedTask.title;
       editDescription.value = editedTask.description;
     
       let editConfirm = document.querySelector(".edit__confirm");
       
       let confirmEditTodo = function(){
-        editedTask.title = editTitle.innerHTML;
+        let userEditText = userEdit.options[userEdit.selectedIndex].text;
+        editedTask.title = editTitle.value;
+        editedTask.description = editDescription.value;
+        editedTask.user = userEditText
+        let task = {
+          ...editedTask,
+          title: editTitle.value,
+          description: editDescription.value,
+          user: userEditText,
+        }
+        
         updateStorage(tasks);
-        console.log(editedTask.title);
+        updateTask(task);
         closeModalEdit();
       }
       editConfirm.addEventListener("click", confirmEditTodo);
@@ -333,7 +354,6 @@ let checkSelectValue = function (value) {
 // select
 
 // отрисовка селекта в зависимости от того, сколько данных к нам прилетело из api
-// но пока он обрабатывает массив fetchArr, дынные которого скопированы из Api:
 
 const setUserName = function () {
   let userSelect = document.querySelector(".user__select");
