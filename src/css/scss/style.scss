@@ -14,6 +14,8 @@ $var13: #000000;
 $var14: #101120;
 $var15: #efff00;
 $var16: #808080;
+$var17: rgba(25, 25, 38, 0.4);
+$var18: rgba(25, 25, 38, 0.902);
 
 * {
 	margin: 0;
@@ -21,12 +23,14 @@ $var16: #808080;
 	box-sizing: border-box;
 }
 body {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 400;
-	font-size: 18px;
-	font-style: normal;
-	background-size: 100%;
-	background-color: $var1;
+    font: {
+        family: 'Raleway', sans-serif;
+        weight: 400;
+        size: 18px;
+        style: normal;
+    }
+    background: linear-gradient(135deg, rgb(0, 150, 137), rgb(45, 6, 126));
+    background-size: 100%;
 }
 .container {
 	width: 80%;
@@ -42,10 +46,10 @@ body {
 	font-size: 40px;
 	font-weight: 500;
 	border-radius: 15px;
-	border: 1px solid $var2;
-	box-shadow: 3px 5px 10px $var3;
+	border: 1px solid $var4;
 	margin-bottom: 20px;
     height: 15vh;
+    background: $var17;
 }
 .header__logo {
 	color: $var4;
@@ -54,7 +58,6 @@ body {
 	height: 60px;
 	width: 120px;
 	border-radius: 10px;
-	background-color: $var5;
 	text-align: center;
 	box-shadow: 2px 1px 20px $var4;
 	color: $var4;
@@ -81,7 +84,6 @@ body {
 	width: 30%;
 	min-height: 500px;
 	border-radius: 15px;
-	background-color: $var1;
 	&__header {
         padding: 10px;
 		display: flex;
@@ -111,7 +113,7 @@ body {
         width: 5px;
     }
     &::-webkit-scrollbar-track {
-        background:$var1;
+        background: none;
     }     
     &::-webkit-scrollbar-thumb {
         background-color: $var4;
@@ -121,14 +123,17 @@ body {
 .todo__header, .todo__footer, .task.todo {
 	border: 3px solid $var6;
 	box-shadow: 2px 2px 7px $var6;
+    background: $var17;
 }
 .in-progress__header, .task.inprogress {
 	border: 3px solid $var7;
 	box-shadow: 2px 2px 7px $var7;
+    background: $var17;
 }
 .done__header, .done__footer, .task.done {
 	border: 3px solid $var8;
 	box-shadow: 2px 2px 7px $var8;
+    background: $var17;
 }
 .todo__footer:hover {
 	background-color: $var9;
@@ -150,6 +155,23 @@ body {
     border-color: $var12;
     cursor: pointer;
 }
+
+.modal__button{
+    padding: 7px;
+    border: 2px solid $var4;
+    border-radius: 5%;
+    color: $var4;
+    background-color: #101120; 
+    box-shadow: 2px 1px 5px $var4;
+    &:hover {
+    cursor: pointer;
+    box-shadow: 2px 1px 10px $var4;
+    }
+    &:active {
+    box-shadow: 1px 1px 1px $var4;
+    cursor: pointer;
+    }
+}
 .task {
 	display: flex;
 	width: 95%;
@@ -160,35 +182,32 @@ body {
 	margin: 0 auto 15px;
 	border-radius: 30px;
 	font-weight: bold;
-	background-color: #1e213ec7;
+	background:$var17;
 	&__header, &__content, &__footer {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
 	&__button {
-		padding: 7px;
-		border: 2px solid $var4;
-		border-radius: 5%;
-		color: $var4;
-		background-color: #1e213ec7;
-		box-shadow: 2px 1px 5px $var4;
-		&:hover {
-            cursor: pointer;
-            box-shadow: 2px 1px 10px $var4;
-		}
-		&:active {
-			box-shadow: 1px 1px 1px $var4;
-            cursor: pointer;
-		}
-		&.button-next {
-			height: 50px;
-		}
-		&.button-edit, &.button-back {
-			margin-right: 5px;
-		}
+		padding: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
 	}
 }
+
+.task__button.button-edit:hover path, .task__button.button-next:hover path, #todo .task__button.button-delete:hover path{
+    fill: $var6;
+  }
+  
+  .task__button.button-back:hover path, .task__button.button-complete:hover path {
+    fill: $var7;
+  }
+  
+  #done .task__button.button-delete:hover path {
+    fill: $var8;
+  }
+
 .modal__bg {
 	position: fixed;
 	top: 0;
@@ -210,7 +229,7 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
-	background-color: $var14;
+	background: $var18;
 	width: 40%;
 	height: 50%;
 	padding: 10px 30px;
@@ -218,9 +237,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	border: 1px solid $var15;
+	border: 2px solid $var6;
 	transition: 0.5s all;
-	box-shadow: 1px 1px 20px $var15;
+	box-shadow: 2px 2px 7px $var6;
 	&.active {
 		transform: translate(-50%, -50%) scale(1);
 		transition: 0.5s all;
@@ -246,12 +265,13 @@ body {
 	width: 100%;
 	text-align: center;
 	text-transform: initial;
-	border: 1px solid $var15;
+	border: 1px solid $var6;
 	border-radius: 5px;
 	background-color: $var14;
 	height: 100%;
 	font-size: 24px;
 	color: $var4;
+    outline: none;
 	&::-webkit-input-placeholder {
 		color: $var16;
 	}
@@ -271,10 +291,11 @@ body {
 	text-align: center;
 	text-transform: initial;
 	border-radius: 15px;
-	border: 1px solid $var15;
+	border: 1px solid $var6;
 	font-size: 24px;
 	background-color: $var14;
 	color: $var4;
+    outline: none;
 	&::-webkit-input-placeholder {
 		color: $var16;
 	}
@@ -309,12 +330,13 @@ body {
 	width: 100%;
 	text-align: center;
 	text-transform: initial;
-	border: 1px solid $var15;
+	border: 1px solid $var6;
 	border-radius: 5px;
 	background-color: $var14;
 	height: 100%;
 	font-size: 24px;
 	color: $var4;
+    outline: none;
 	&::-webkit-input-placeholder {
 		color: $var16;
 	}
@@ -334,10 +356,11 @@ body {
 	text-align: center;
 	text-transform: initial;
 	border-radius: 15px;
-	border: 1px solid $var15;
+	border: 1px solid $var6;
 	font-size: 24px;
 	background-color: $var14;
 	color: $var4;
+    outline: none;
 	&::-webkit-input-placeholder {
 		color: $var16;
 	}
@@ -372,7 +395,7 @@ body {
 	padding: 1px 20px;
 	font-size: 14px;
 	border-radius: 3px;
-	border: 1px solid $var15;
+	border: 1px solid $var6;
 	background-color: $var14;
 	color: $var4;
 }
