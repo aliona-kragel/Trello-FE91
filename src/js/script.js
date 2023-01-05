@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
       usersData = [];
 // Вот в таком виде к нам должны прийти данные из Api:
 
-// showCurrentTime();
+showCurrentTime();
 
 let loadPage = function () {
   let localTasksData = localStorage.getItem("tasks");
