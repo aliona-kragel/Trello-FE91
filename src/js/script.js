@@ -1,9 +1,11 @@
+import { showCurrentDate } from "./modules/clock.js";
 import { showCurrentTime } from "./modules/clock.js";
 import { updateStorage } from "./modules/local.js";
 window.addEventListener("load", () => {
   let tasks = [],
     usersData = [];
 
+  showCurrentDate();
   showCurrentTime();
 
   let loadPage = function () {
