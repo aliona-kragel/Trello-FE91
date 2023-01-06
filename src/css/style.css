@@ -38,13 +38,26 @@ body {
   color: #f0f8ff;
 }
 
-.header__clock {
-  height: 60px;
-  width: 120px;
+.info{
+  display: flex;
+  column-gap: 30px;
+}
+
+.infoblock{
   border-radius: 10px;
   text-align: center;
   box-shadow: 2px 1px 20px #f0f8ff;
   color: #f0f8ff;
+}
+
+.calendar{
+  height: 60px;
+  width: 220px;
+}
+
+.header__clock{
+  height: 60px;
+  width: 120px;
 }
 
 .board {

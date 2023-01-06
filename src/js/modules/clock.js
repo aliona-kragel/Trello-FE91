@@ -1,4 +1,13 @@
 
+export let showCurrentDate = function () {
+  const now = new Date();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 
+    'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let month = now.getMonth();
+    month = months[month];
+    let date = document.querySelector(".calendar"); 
+    date.innerText = `${now.getDate()} ${month} ${now.getFullYear()}`
+}
 
 export let showCurrentTime = function () {
     let date = new Date();
