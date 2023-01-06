@@ -202,16 +202,19 @@ window.addEventListener("load", () => {
       editedTask.title = editTitle.value;
       editedTask.description = editDescription.value;
       editedTask.user = userEditText
-      let task = {
-        ...editedTask,
-        title: editTitle.value,
-        description: editDescription.value,
-        user: userEditText,
-      }
-
+      if (checkTaskValue(editTitle.value) &&
+      checkTaskValue(editDescription.value) &&
+      checkSelectValue(userEditText)) {
+        let task = {
+          ...editedTask,
+          title: editTitle.value,
+          description: editDescription.value,
+          user: userEditText,
+        }
       updateStorage(tasks);
       updateTask(task);
       closeModalEdit();
+      }
     }
     editConfirm.addEventListener("click", confirmEditTodo);
   }
