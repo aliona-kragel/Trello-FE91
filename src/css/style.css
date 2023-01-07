@@ -38,24 +38,24 @@ body {
   color: #f0f8ff;
 }
 
-.info{
+.info {
   display: flex;
   column-gap: 30px;
 }
 
-.infoblock{
+.infoblock {
   border-radius: 10px;
   text-align: center;
   box-shadow: 2px 1px 20px #f0f8ff;
   color: #f0f8ff;
 }
 
-.calendar{
+.calendar {
   height: 60px;
   width: 220px;
 }
 
-.header__clock{
+.header__clock {
   height: 60px;
   width: 120px;
 }
