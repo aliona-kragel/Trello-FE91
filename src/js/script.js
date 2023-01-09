@@ -111,6 +111,11 @@ window.addEventListener("load", () => {
     modalDone.classList.add("active");
   }
 
+  let showModalWarning = function () {
+    modalBg.classList.add("active");
+    modalDone.classList.add("active");
+  }
+
   let showModalDeleteTask = function (parent, taskId) {
     
     modalBg.classList.add("active");
@@ -179,9 +184,9 @@ window.addEventListener("load", () => {
   let buttonDeleteAll = document.querySelector(".done__footer");
       buttonDeleteAll.addEventListener("click", function () {
         let emptyToDo = tasks.filter(item => item.status == done)
-        if (emptyToDo.length == 0 && tasks.length == 0) {
-          alert("Удалять нечего")
-        } else {showModalDone()}
+        if (emptyToDo.length !== 0 || tasks.length !== 0) {
+          showModalDone();
+        } 
         }
       );
 
