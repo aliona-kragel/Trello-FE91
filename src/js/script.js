@@ -178,8 +178,8 @@ window.addEventListener("load", () => {
 
   let buttonDeleteAll = document.querySelector(".done__footer");
       buttonDeleteAll.addEventListener("click", function () {
-        let emptyToDo = tasks.filter(item => item.status == done)
-        if (emptyToDo.length !== 0 || tasks.length !== 0) {
+        let emptyToDo = tasks.filter(item => item.status == "done")
+        if (emptyToDo.length !== 0) {
           showModalDone();
         } 
         }
