@@ -64,17 +64,18 @@ body {
     text-align: center;
     box-shadow: 2px 1px 20px $var4;
     color: $var4;
+	padding: 7px;
 }
   
-.calendar{
-    height: 60px;
-    width: 220px;
-}
+// .calendar{
+//     height: 60px;
+//     width: 220px;
+// }
   
-.header__clock{
-    height: 60px;
-    width: 120px;
-}
+// .header__clock{
+//     height: 60px;
+//     width: 120px;
+// }
 
 .board {
 	height: 80vh;
@@ -177,6 +178,9 @@ body {
     color: $var4;
     background-color: #101120; 
     box-shadow: 2px 1px 5px $var4;
+	display: flex;
+  	justify-content: center;
+ 	align-items: center;
     &:hover {
     cursor: pointer;
     box-shadow: 2px 1px 10px $var4;

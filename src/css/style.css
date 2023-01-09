@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.border-red {
+	border: 1px solid red;
+}
+
 body {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
@@ -48,8 +52,9 @@ body {
   text-align: center;
   box-shadow: 2px 1px 20px #f0f8ff;
   color: #f0f8ff;
+  padding: 7px;
 }
-
+/* 
 .calendar {
   height: 60px;
   width: 220px;
@@ -58,7 +63,7 @@ body {
 .header__clock {
   height: 60px;
   width: 120px;
-}
+} */
 
 .board {
   height: 80vh;
@@ -170,6 +175,9 @@ body {
   color: #f0f8ff;
   background-color: #101120;
   box-shadow: 2px 1px 5px #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal__button:hover {
   cursor: pointer;
