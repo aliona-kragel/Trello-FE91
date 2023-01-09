@@ -28,10 +28,13 @@
     }
     .board {
         column-gap: 20px;
-        justify-content: unset; 
-        padding: 0 20px;
+        justify-content: space-around; 
+        padding: 0 50px;
         height: 80vh;
         overflow-x: scroll;
+    }
+    .warning {
+        width: 50%;
     }
 }
 
@@ -39,12 +42,22 @@
     .modal {
         width: 80%;
     }
-    .container {
-        padding-top: 200px;
+    .warning {
+        width: 70%;
+    }
+    .board {
+        column-gap: 20px;
+        justify-content: unset; 
+        padding: 0 50px;
+        height: 80vh;
+        overflow-x: scroll;
     }
 }
 
 @media (max-width: 650px) {
+    .container {
+        padding-top: 200px;
+    }
     .modal {
         width: 90%;
     }
