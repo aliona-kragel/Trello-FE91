@@ -26,18 +26,18 @@
         </header>
         <div class="board">
             <div class="column board__todo">
-                <div class="column__header todo__header">TODO<span class="counter"></span></div>
+                <div class="column__header todo__header">TODO<span class="counter">0</span></div>
                 <div id="todo">
                 </div>
                 <button class="column__footer todo__footer">Add todo</button>
             </div>
             <div class="column board__in-progress">
-                <div class="column__header in-progress__header">IN PROGRESS<span class="counter"></span></div>
+                <div class="column__header in-progress__header">IN PROGRESS<span class="counter">0</span></div>
                 <div id="inprogress">
                 </div>
             </div>
             <div class="column board__done">
-                <div class="column__header done__header">DONE<span class="counter"></span></div>
+                <div class="column__header done__header">DONE<span class="counter">0</span></div>
                 <div id="done">
                 </div>
                 <button class="column__footer done__footer">Delete all</button>
@@ -96,6 +96,14 @@
         <div class="warning__buttons">
             <button type="button" class="modal__button warning__cancel">Cancel</button>
             <button type="button" class="modal__button warning__confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="delete-task__warning warning">
+        <div class="warning__name"><b>Warning!</b><br>Do you really want to delete item?</div>
+        <div class="warning__buttons">
+            <button type="button" class="modal__button warning-delete__cancel">Cancel</button>
+            <button type="button" class="modal__button warning-delete__confirm">Confirm</button>
         </div>
     </div>
 

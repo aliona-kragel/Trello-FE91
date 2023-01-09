@@ -1,6 +1,7 @@
 import { showCurrentDate } from "./modules/clock.js";
 import { showCurrentTime } from "./modules/clock.js";
 import { updateStorage } from "./modules/local.js";
+
 window.addEventListener("load", () => {
   let tasks = [],
     usersData = [];
@@ -65,17 +66,14 @@ window.addEventListener("load", () => {
 
   // Delete Task
 
-  let deleteTask = function () {
-    let parent = this.closest(".task");
-    let taskId = +parent.getAttribute("data-key");
-    let taskFilter = tasks.filter((item) => item.id !== taskId);
-
-    parent.remove();
-    tasks = [...taskFilter];
-    updateCounterToDo();
-    updateCounterInProgress();
-    updateCounterDone();
-    updateStorage(tasks);
+  let deleteTask = function (parent, taskId) {    
+      let taskFilter = tasks.filter((item) => item.id !== taskId); 
+      parent.remove();
+      tasks = [...taskFilter];
+      updateCounterToDo();
+      updateCounterInProgress();
+      updateCounterDone();
+      updateStorage(tasks);
   }
 
   // Delete All
@@ -106,15 +104,37 @@ window.addEventListener("load", () => {
   }
 
   let modalDone = document.querySelector(".done__warning.warning");
+  let modalDeleteTask = document.querySelector(".delete-task__warning");
 
   let showModalDone = function () {
     modalBg.classList.add("active");
     modalDone.classList.add("active");
   }
 
+  let showModalDeleteTask = function (parent, taskId) {
+    
+    modalBg.classList.add("active");
+    modalDeleteTask.classList.add("active");
+    let confirmDeleteTask = document.querySelector(".warning-delete__confirm");
+        confirmDeleteTask.addEventListener("click", () => {
+          closeModalDeleteTask();
+          deleteTask(parent, taskId);
+        });
+
+    let cancelDeleteTask = document.querySelector(".warning-delete__cancel");
+        cancelDeleteTask.addEventListener("click", () => {
+          closeModalDeleteTask();
+        });
+  }
+
   let closeModalDone = function () {
     modalBg.classList.remove("active");
     modalDone.classList.remove("active");
+  }
+
+  let closeModalDeleteTask = function () {
+    modalBg.classList.remove("active");
+    modalDeleteTask.classList.remove("active");
   }
 
   // buttons Next, Back, Complete
@@ -157,15 +177,24 @@ window.addEventListener("load", () => {
   }
 
   let buttonDeleteAll = document.querySelector(".done__footer");
-  buttonDeleteAll.addEventListener("click", showModalDone);
+      buttonDeleteAll.addEventListener("click", function () {
+        let emptyToDo = tasks.filter(item => item.status == "done")
+        if (emptyToDo.length !== 0) {
+          showModalDone();
+        } 
+        }
+      );
+
   let confirmDeleteAll = document.querySelector(".warning__confirm");
-  confirmDeleteAll.addEventListener("click", () => {
-    deleteAllTask();
-    closeModalDone();
-  });
+      confirmDeleteAll.addEventListener("click", () => {
+        deleteAllTask();
+        closeModalDone();
+      });
+
   let cancelDeleteAll = document.querySelector(".warning__cancel");
-  cancelDeleteAll.addEventListener("click", closeModalDone);
-  //buttonDeleteAll.addEventListener("click", deleteAllTask);
+      cancelDeleteAll.addEventListener("click", closeModalDone);
+  
+    //buttonDeleteAll.addEventListener("click", deleteAllTask);
 
   let updateTask = function (obj) {
     let taskTitle = document.querySelector(".task__title");
@@ -201,19 +230,23 @@ window.addEventListener("load", () => {
       let userEditText = userEdit.options[userEdit.selectedIndex].text;
       editedTask.title = editTitle.value;
       editedTask.description = editDescription.value;
-      editedTask.user = userEditText
+      editedTask.user = userEditText;
+
       if (checkTaskValue(editTitle.value) &&
-      checkTaskValue(editDescription.value) &&
-      checkSelectValue(userEditText)) {
+        checkTaskValue(editDescription.value) &&
+        checkSelectValue(userEditText)) {
         let task = {
           ...editedTask,
           title: editTitle.value,
           description: editDescription.value,
           user: userEditText,
         }
-      updateStorage(tasks);
-      updateTask(task);
-      closeModalEdit();
+        updateStorage(tasks);
+        updateTask(task);
+        closeModalEdit();
+      }
+      else {
+        alert("Заполните все поля")
       }
     }
     editConfirm.addEventListener("click", confirmEditTodo);
@@ -251,7 +284,11 @@ window.addEventListener("load", () => {
     taskButtonDelete.innerHTML = `<svg class="svg-icon" style="width: 28; height: 28;vertical-align: center;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <path d="M896 196.923077H649.846154V118.153846c0-43.323077-35.446154-78.769231-78.769231-78.769231h-118.153846c-43.323077 0-78.769231 35.446154-78.769231 78.769231v78.769231H128c-15.753846 0-29.538462 13.784615-29.538462 29.538461v59.076924c0 15.753846 13.784615 29.538462 29.538462 29.538461h768c15.753846 0 29.538462-13.784615 29.538462-29.538461v-59.076924c0-15.753846-13.784615-29.538462-29.538462-29.538461zM452.923077 137.846154c0-11.815385 7.876923-19.692308 19.692308-19.692308h78.76923c11.815385 0 19.692308 7.876923 19.692308 19.692308v59.076923h-118.153846V137.846154z m364.307692 256h-610.461538c-15.753846 0-29.538462 13.784615-29.538462 29.538461V886.153846c0 55.138462 43.323077 98.461538 98.461539 98.461539h472.615384c55.138462 0 98.461538-43.323077 98.461539-98.461539V423.384615c0-15.753846-13.784615-29.538462-29.538462-29.538461zM452.923077 827.076923c0 11.815385-7.876923 19.692308-19.692308 19.692308h-39.384615c-11.815385 0-19.692308-7.876923-19.692308-19.692308V551.384615c0-11.815385 7.876923-19.692308 19.692308-19.692307h39.384615c11.815385 0 19.692308 7.876923 19.692308 19.692307v275.692308z m196.923077 0c0 11.815385-7.876923 19.692308-19.692308 19.692308h-39.384615c-11.815385 0-19.692308-7.876923-19.692308-19.692308V551.384615c0-11.815385 7.876923-19.692308 19.692308-19.692307h39.384615c11.815385 0 19.692308 7.876923 19.692308 19.692307v275.692308z" fill="white"  />
     </svg>`;
-    taskButtonDelete.addEventListener("click", deleteTask);
+    taskButtonDelete.addEventListener("click", function() {
+      let parent = this.closest(".task");
+      let taskId = +parent.getAttribute("data-key");
+      showModalDeleteTask(parent, taskId);
+    });
 
     let taskButtonBack = document.createElement("button");
     taskButtonBack.classList.add("task__button", "button-back");
@@ -419,10 +456,7 @@ window.addEventListener("load", () => {
       updateCounterToDo();
       closeModalTodo();
       updateStorage(tasks);
-    } else {
-      confirm("Заполните все поля");
-    }
-  };
+    }};
 
   let modalBg = document.querySelector(".modal__bg");
 

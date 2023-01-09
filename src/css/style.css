@@ -48,16 +48,7 @@ body {
   text-align: center;
   box-shadow: 2px 1px 20px #f0f8ff;
   color: #f0f8ff;
-}
-
-.calendar {
-  height: 60px;
-  width: 220px;
-}
-
-.header__clock {
-  height: 60px;
-  width: 120px;
+  padding: 7px;
 }
 
 .board {
@@ -170,6 +161,9 @@ body {
   color: #f0f8ff;
   background-color: #101120;
   box-shadow: 2px 1px 5px #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal__button:hover {
   cursor: pointer;

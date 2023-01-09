@@ -64,16 +64,7 @@ body {
     text-align: center;
     box-shadow: 2px 1px 20px $var4;
     color: $var4;
-}
-  
-.calendar{
-    height: 60px;
-    width: 220px;
-}
-  
-.header__clock{
-    height: 60px;
-    width: 120px;
+	padding: 7px;
 }
 
 .board {
@@ -177,6 +168,9 @@ body {
     color: $var4;
     background-color: #101120; 
     box-shadow: 2px 1px 5px $var4;
+	display: flex;
+  	justify-content: center;
+ 	align-items: center;
     &:hover {
     cursor: pointer;
     box-shadow: 2px 1px 10px $var4;
