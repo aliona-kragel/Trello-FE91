@@ -22,34 +22,36 @@
         left: 10%;
         height: 72px;
     }
-    .header__clock {
-        height: 40px;
-        width: 100px;
-    }
     .column {
         min-width: 300px;
         height: 60vh;
     }
     .board {
         column-gap: 20px;
-        justify-content: unset;
+        justify-content: unset; 
         padding: 0 20px;
         height: 80vh;
         overflow-x: scroll;
     }
-};
+}
 
 @media (max-width: 1000px) {
     .modal {
-        width: 70%;
+        width: 80%;
+    }
+    .container {
+        padding-top: 200px;
     }
 }
 
 @media (max-width: 650px) {
     .modal {
-        width: 70%;
+        width: 90%;
     }
     .trello__header {
+        height: 150px;
+    }
+    .info {
         flex-direction: column;
     }
 }

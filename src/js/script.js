@@ -111,11 +111,6 @@ window.addEventListener("load", () => {
     modalDone.classList.add("active");
   }
 
-  let showModalWarning = function () {
-    modalBg.classList.add("active");
-    modalDone.classList.add("active");
-  }
-
   let showModalDeleteTask = function (parent, taskId) {
     
     modalBg.classList.add("active");
