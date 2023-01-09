@@ -448,3 +448,8 @@ body {
 .done__warning {
   justify-content: space-around;
 }
+
+.invalid {
+  border-color: #ff0000;
+  box-shadow: 1px 1px 7px #ff0000;
+}

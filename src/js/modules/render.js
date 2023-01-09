@@ -153,14 +153,6 @@ if (localStorage.getItem("UserDataApi")) {
     })
 };
 
-export let checkTaskValue = function (value) {
-  if (value === "" || value === " ") {
-    return false
-  } else {
-    return true
-  }
-};
-
 export let checkSelectValue = function (value) {
   if (value === "0") {
     return false
@@ -169,15 +161,22 @@ export let checkSelectValue = function (value) {
   }
 };
 
-export let updateTask = function (obj) {
-  let taskTitle = document.querySelector(".task__title");
-  taskTitle.innerHTML = obj.title;
-
-  let taskDescription = document.querySelector(".task__description");
-  taskDescription.innerHTML = obj.description;
-
-  let taskUser = document.querySelector(".task__user");
-  taskUser.innerHTML = obj.user;
+export let validateInput = function (elem) {
+  let isValid = true;
+  let value = elem.value;
+  let name = elem.name;
+  switch (name) {
+    case "title":
+      isValid = value.trim() != "";
+      break;
+    case "description":
+      isValid = value.trim() != "";
+      break;
+    default:
+      break;
+  }
+  elem.classList.toggle("invalid", !isValid);
+  return isValid;
 }
 
 // отрисовка селекта в окне AddTodo
@@ -221,6 +220,17 @@ const setUserNameEdit = function () {
   selectAll.append(userSelect);
 }
 setUserNameEdit()
+
+export let updateTask = function (elem, obj) {
+  let taskTitle = elem.querySelector(".task__title");
+  taskTitle.innerHTML = obj.title;
+
+  let taskDescription = elem.querySelector(".task__description");
+  taskDescription.innerHTML = obj.description;
+
+  let taskUser = elem.querySelector(".task__user");
+  taskUser.innerHTML = obj.user;
+}
 
 // Delete
 

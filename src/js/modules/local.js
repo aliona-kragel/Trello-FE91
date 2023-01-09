@@ -1,5 +1,3 @@
-import { tasks } from "./render.js";
-
-export let updateStorage = function () {
+export let updateStorage = function (tasks) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 };
