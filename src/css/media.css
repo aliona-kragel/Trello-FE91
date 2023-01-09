@@ -55,14 +55,8 @@
 }
 
 @media (max-width: 650px) {
-    .container {
-        padding-top: 200px;
-    }
     .modal {
         width: 90%;
-    }
-    .trello__header {
-        height: 150px;
     }
     .info {
         flex-direction: column;
@@ -71,6 +65,6 @@
     .infoblock {
         box-shadow: none;
         padding: 0;
-        font-size: 24px;
+        font-size: 20px;
     }
 }
