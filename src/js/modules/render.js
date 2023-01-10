@@ -3,6 +3,7 @@ import { updateStorage } from "./local.js";
 import { moveToTodo, moveToDone, moveToProgress } from "./buttons.js";
 import { updateCounterDone, updateCounterInProgress, updateCounterToDo } from "./counters.js";
 import { showModalEdit, showModalDeleteTask } from "./modals.js";
+import { startDragTask, endDragTask } from "./dragNdrop.js";
 
 export let tasks = [];
 export let usersData = [];
@@ -19,6 +20,9 @@ export let createNewTask = function (obj) {
   let task = document.createElement("div");
   task.classList.add("task");
   task.setAttribute("data-key", obj.id);
+  task.setAttribute("draggable", true);
+  task.addEventListener("dragstart", startDragTask);
+  task.addEventListener("dragend", endDragTask);
 
   let taskHeader = document.createElement("div");
   taskHeader.classList.add("task__header");

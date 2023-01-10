@@ -185,6 +185,7 @@ body {
   border-radius: 30px;
   font-weight: bold;
   background: rgba(25, 25, 38, 0.4);
+  cursor: move; /*добавила*/
 }
 .task__header, .task__content, .task__footer {
   display: flex;
@@ -449,6 +450,20 @@ body {
   justify-content: space-around;
 }
 
+/* И это добавила */
+.drop {
+  background: linear-gradient(#eee, transparent);
+  opacity: 0.3;
+}
+
+.hide {
+  display: none;
+}
+
+.work__area{
+  height: 100%;
+}
+/* ---------------- */
 .invalid {
   border-color: #ff0000;
   box-shadow: 1px 1px 7px #ff0000;
