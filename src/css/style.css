@@ -450,7 +450,6 @@ body {
   justify-content: space-around;
 }
 
-/* И это добавила */
 .drop {
   background: linear-gradient(#eee, transparent);
   opacity: 0.3;
@@ -463,7 +462,7 @@ body {
 .work__area{
   height: 100%;
 }
-/* ---------------- */
+
 .invalid {
   border-color: #ff0000;
   box-shadow: 1px 1px 7px #ff0000;
