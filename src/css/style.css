@@ -13,7 +13,7 @@ body {
 }
 
 .dark {
-  background: #101120;
+  background: linear-gradient(135deg, rgb(0, 4, 48), rgb(59, 1, 114) 86%);
 }
 
 .normal {
