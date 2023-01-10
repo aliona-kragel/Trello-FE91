@@ -31,8 +31,14 @@ body {
         size: 18px;
         style: normal;
     }
-    background: linear-gradient(135deg, rgb(0, 150, 137), rgb(45, 6, 126));
     background-size: 100%;
+}
+.dark {
+	background: #101120;
+}
+  
+.normal {
+	background: linear-gradient(135deg, #009689, #2d067e);
 }
 .container {
 	width: 80%;
@@ -59,6 +65,8 @@ body {
 .info{
     display: flex;
     column-gap: 30px;
+	justify-content: center;
+	align-items: center;
 }
   
 .infoblock{

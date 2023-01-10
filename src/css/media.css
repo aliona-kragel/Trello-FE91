@@ -5,9 +5,6 @@
 }
 
 @media (max-width: 1300px) {
-    .body {
-        background: linear-gradient(135deg, #009689, #2d067e);
-    }
     .container {
         padding-top: 150px;
         width: 100%;
@@ -55,8 +52,14 @@
 }
 
 @media (max-width: 650px) {
+    .container {
+        padding-top: 200px;
+    }
     .modal {
         width: 90%;
+    }
+    .trello__header {
+        height: 150px;
     }
     .info {
         flex-direction: column;
