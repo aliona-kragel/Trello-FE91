@@ -16,6 +16,8 @@ $var15: #efff00;
 $var16: #808080;
 $var17: rgba(25, 25, 38, 0.4);
 $var18: rgba(25, 25, 38, 0.902);
+$var19: #ff0000;
+$var20: #eee;
 
 * {
 	margin: 0;
@@ -191,6 +193,7 @@ body {
 	border-radius: 30px;
 	font-weight: bold;
 	background:$var17;
+	cursor: move;
 	&__header, &__content, &__footer {
 		display: flex;
 		justify-content: space-between;
@@ -442,3 +445,21 @@ body {
 .done__warning {
 	justify-content: space-around;
 }
+
+.invalid {
+	border-color: $var19;
+	box-shadow: 1px 1px 7px $var19;
+  }
+
+.drop {
+	background: linear-gradient($var20, transparent);
+	opacity: 0.3;
+  }
+  
+.hide {
+	display: none;
+  }
+  
+.work__area{
+	height: 100%;
+  }
