@@ -9,8 +9,41 @@ body {
   font-weight: 400;
   font-size: 18px;
   font-style: normal;
-  background: linear-gradient(135deg, #009689, #2d067e);
   background-size: 100%;
+}
+
+.dark {
+  background: linear-gradient(135deg, rgb(0, 4, 48), rgb(59, 1, 114) 86%);
+}
+
+.normal {
+  background: linear-gradient(135deg, #009689, #2d067e);
+}
+
+.background__button {
+  width: 50px;
+  height: 50px;
+}
+
+.moon {
+  background: url(../img/moon.svg);
+}
+
+.sun {
+  background: url(../img/sun.svg);
+}
+
+#background__button-change {
+  padding: 7px;
+  border: none;
+  border-radius: 5%;
+  color: #f0f8ff;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -41,6 +74,8 @@ body {
 .info {
   display: flex;
   column-gap: 30px;
+  justify-content: center;
+	align-items: center;
 }
 
 .infoblock {

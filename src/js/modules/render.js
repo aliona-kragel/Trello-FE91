@@ -260,3 +260,32 @@ export let deleteAllTask = function () {
   updateCounterDone();
   updateStorage(tasks);
 }
+
+let buttonCangeBg = document.querySelector("#background__button-change");
+
+let switchTheme = function () {
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("normal");
+  buttonCangeBg.classList.toggle("sun");
+  buttonCangeBg.classList.toggle("moon");
+  let theme = document.body.className;
+  let icon = buttonCangeBg.className;
+  localStorage.setItem('theme', theme);
+  localStorage.setItem('icon', icon);
+}
+
+if (buttonCangeBg) {
+  buttonCangeBg.addEventListener("click", switchTheme);
+}
+
+let changeBg = function () {
+  let theme = localStorage.getItem('theme');
+  let icon = localStorage.getItem('icon');
+  if (theme && icon) {
+    document.body.className = theme;
+    buttonCangeBg.className = icon;
+  } else {
+    document.body.className = "normal";
+    buttonCangeBg.className = "sun";
+  }
+}; changeBg();
