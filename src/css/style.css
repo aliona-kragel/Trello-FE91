@@ -185,6 +185,7 @@ body {
   border-radius: 30px;
   font-weight: bold;
   background: rgba(25, 25, 38, 0.4);
+  cursor: move;
 }
 .task__header, .task__content, .task__footer {
   display: flex;
@@ -447,6 +448,19 @@ body {
 
 .done__warning {
   justify-content: space-around;
+}
+
+.drop {
+  background: linear-gradient(#eee, transparent);
+  opacity: 0.3;
+}
+
+.hide {
+  display: none;
+}
+
+.work__area{
+  height: 100%;
 }
 
 .invalid {
